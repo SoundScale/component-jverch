@@ -9,6 +9,7 @@ CREATE TABLE artists (
     followers INT,
     followStatus BOOLEAN,
     numTracks INT,
+    dp LONGBLOB,
     PRIMARY KEY (id)
 );
 
@@ -18,6 +19,7 @@ CREATE TABLE users (
     followers INT,
     followStatus BOOLEAN,
     home VARCHAR(50),
+    dp LONGBLOB,
     PRIMARY KEY (id)
 );
 

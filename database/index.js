@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-const startup = require('./startup.js');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -11,7 +10,7 @@ connection.connect((err) => {
   if (err) {
     console.error(`error connecting: ${err.stack}`);
     return;
-  } console.log(`connected as id ${connection.threadId}`);
+  } console.log('connected to database');
 });
 
 module.exports.connection = connection;

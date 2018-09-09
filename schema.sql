@@ -5,21 +5,21 @@ USE soundcloud;
 
 CREATE TABLE artists (
     id INT NOT NULL AUTO_INCREMENT,
-    userName VARCHAR(20),
+    userName VARCHAR(100),
     followers INT,
     followStatus BOOLEAN,
     numTracks INT,
-    dp LONGBLOB,
+    dp VARCHAR(2083),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
-    userName VARCHAR(20),
+    userName VARCHAR(100),
     followers INT,
     followStatus BOOLEAN,
-    home VARCHAR(50),
-    dp LONGBLOB,
+    home VARCHAR(255),
+    dp VARCHAR(2083),
     PRIMARY KEY (id)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE songs (
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(50),
     artistId INT,
-    description VARCHAR(255),
+    description VARCHAR(2083),
     PRIMARY KEY (id),
     FOREIGN KEY (artistId)
         REFERENCES artists (id)
@@ -35,10 +35,10 @@ CREATE TABLE songs (
 
 CREATE TABLE comments (
     id INT NOT NULL AUTO_INCREMENT,
-    comText VARCHAR(255),
+    comText VARCHAR(2083),
     userId INT NOT NULL,
     songId INT NOT NULL,
-    songTimeSpot TIME,
+    songTimeSpot INT,
     timeSincePost INT,     
     PRIMARY KEY (id),
     FOREIGN KEY (userId)
@@ -49,7 +49,7 @@ CREATE TABLE comments (
 
 CREATE TABLE replies (
     id INT NOT NULL AUTO_INCREMENT,
-    replyText VARCHAR(255),
+    replyText VARCHAR(2083),
     timeSincePost INT,
     userId INT,
     commentId INT,

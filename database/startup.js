@@ -12,7 +12,7 @@ const randomComment = () => comments.comments[randomBound(0, comments.comments.l
 
 const createArtistData = () => {
   for (let i = 0; i < 100; i += 1) {
-    const query = `INSERT INTO artists (userName, followers, followStatus, numTracks, dp) VALUES("${faker.internet.userName()}",${randomBound(100000, 1000000)},${randomBoolean()},${randomBound(5, 100)},"${faker.image.avatar()}")`;
+    const query = `INSERT INTO artists (userName, followers, followStatus, numTracks, dp) VALUES("${faker.name.firstName()}",${randomBound(100000, 1000000)},${randomBoolean()},${randomBound(5, 100)},"${faker.image.avatar()}")`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating artist data error', err);

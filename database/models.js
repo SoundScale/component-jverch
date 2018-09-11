@@ -2,21 +2,30 @@ const db = require('./index.js');
 
 const { connection } = db;
 
-const query = 'SELECT * FROM songs INNER JOIN artists ON (songs.id = 1 AND artists.id = songs.artistId)';
+const query = (sql, holder, identifier) => {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (err, rows) => {
+      if (err) {
+        return reject(err);
+      }
+      const info = holder;
+      info[identifier] = rows;
+      return resolve(info);
+    });
+  });
+};
 
-connection.query(query, (err, data) => {
-  if (err) {
-    console.log('creating artist data error', err);
-  } else {
-    console.log('successfully created selection data', data);
-  }
-});
+const getAllSongData = (res, songid) => {
+  const artist = 'artist';
+  const artistAndSongQuery = `SELECT * FROM songs INNER JOIN artists ON (songs.id = ${songid} AND artists.id = songs.artistId)`;
+  const comments = 'comments';
+  const commentsAndRepliesQuery = `SELECT * from comments INNER JOIN replies ON replies.commentId=comments.id WHERE songId IN (SELECT id FROM songs WHERE id=${songid})`;
+  const songInfo = {};
 
+  return query(artistAndSongQuery, songInfo, artist)
+    .then(info => query(commentsAndRepliesQuery, info, comments))
+    .then(info => res.send(info))
+    .catch(err => err);
+};
 
-  // SELECT * FROM songs INNER JOIN artists ON (songs.id=1 AND artists.id=songs.artistId)
-  
-  // UNION ALL
-  // SELECT  * from comments inner join replies on comments.id=replies.commentId
-  // where songId IN (
-  //   SELECT id FROM songs where id=1
-  //   )
+module.exports = getAllSongData;

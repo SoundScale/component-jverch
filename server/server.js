@@ -1,10 +1,10 @@
 const express = require('express');
+const model = require('../database/models.js');
 
 const app = express();
 
 app.get('/songs/:songid', (req, res) => {
-  console.log(req.params);
-  res.send('hi');
+  model(res, req.params.songid);
 });
 
 

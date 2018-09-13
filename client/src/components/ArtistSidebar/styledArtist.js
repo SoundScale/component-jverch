@@ -69,9 +69,10 @@ justify-content: flex-start;
 `;
 
 const FollowerIcon = styled.span`
+cursor: pointer;
 display: inline-block;
 vertical-align: bottom;
-margin: 0 10px 5px 0;
+margin: 0 3px 5px 0;
 width:16px;
 height:16px;
 background-size: 16px 16px;
@@ -79,6 +80,7 @@ background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53
 `;
 
 const FollowerCount = styled.span`
+cursor: pointer;
 display:inline-block;
 width:16px;
 height:16px;
@@ -88,6 +90,34 @@ font-size: 14px;
 line-height: 20px;
 color: #999;
 margin: 0 10px 5px 0;
+&:hover{
+  color: #333;
+}
+`;
+
+const TracksIcon = styled.span `
+cursor: pointer;
+display: inline-block;
+vertical-align: bottom;
+margin: 0 3px 0 20px;
+width:16px;
+height:16px;
+background-size: 16px 16px;
+background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTUgMTJoMnY0SDV6TTIxIDEyaDJ2NGgtMnpNMTcgMTBoMnY4aC0yek05IDhoMnYxMkg5ek0xMyA1aDJ2MThoLTJ6Ii8+PC9zdmc+);
+padding: 0;
+`;
+
+const TracksCount = styled.span`
+cursor: pointer;
+display:inline-block;
+width:4px;
+height:16px;
+font-size: 14px;
+line-height: 20px;
+color: #999;
+&:hover{
+  color: #333;
+}
 `;
 
 export default {
@@ -101,4 +131,6 @@ export default {
   FollowerTracksRow,
   FollowerIcon,
   FollowerCount,
+  TracksIcon,
+  TracksCount,
 };

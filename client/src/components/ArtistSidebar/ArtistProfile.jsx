@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styledComponents from './styledArtist';
 import PremiumPlan from './premiumPlan.jsx';
+import FollowButton from './FollowButton.jsx';
 
 class ArtistProfile extends React.Component {
   constructor(props) {
@@ -30,6 +31,8 @@ class ArtistProfile extends React.Component {
     const { FollowerTracksRow } = styledComponents;
     const { FollowerIcon } = styledComponents;
     const { FollowerCount } = styledComponents;
+    const { TracksIcon } = styledComponents;
+    const { TracksCount } = styledComponents;
     return (
       <ProfileDiv>
         <Avatar src={artist.dp} alt="Avatar" id="dp" />
@@ -42,7 +45,10 @@ class ArtistProfile extends React.Component {
         <FollowerTracksRow>
           <FollowerIcon />
           <FollowerCount>{artist.followers}</FollowerCount>
+          <TracksIcon />
+          <TracksCount>{artist.numTracks}</TracksCount>
         </FollowerTracksRow>
+        <FollowButton followStatus={artist.followStatus} />
       </ProfileDiv>
     );
   }

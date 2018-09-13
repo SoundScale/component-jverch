@@ -6,10 +6,11 @@ USE soundcloud;
 CREATE TABLE artists (
     id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(100),
-    followers INT,
+    followers VARCHAR(7),
     followStatus BOOLEAN,
     numTracks INT,
     dp VARCHAR(2083),
+    premium BOOLEAN,
     PRIMARY KEY (id)
 );
 
@@ -36,12 +37,12 @@ CREATE TABLE songs (
 CREATE TABLE comments (
     id INT NOT NULL AUTO_INCREMENT,
     comText VARCHAR(2083),
-    userId INT NOT NULL,
+    comUserId INT NOT NULL,
     songId INT NOT NULL,
-    songTimeSpot INT,
+    songTimeSpot VARCHAR(5),
     timeSincePost INT,     
     PRIMARY KEY (id),
-    FOREIGN KEY (userId)
+    FOREIGN KEY (comUserId)
         REFERENCES users (id),
     FOREIGN KEY (songId)
         REFERENCES songs (id)

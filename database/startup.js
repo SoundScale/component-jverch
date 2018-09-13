@@ -12,7 +12,7 @@ const randomComment = () => comments.comments[randomBound(0, comments.comments.l
 
 const createArtistData = () => {
   for (let i = 0; i < 100; i += 1) {
-    const query = `INSERT INTO artists (userName, followers, followStatus, numTracks, dp) VALUES("${faker.name.firstName()}",${randomBound(100000, 1000000)},${randomBoolean()},${randomBound(5, 100)},"${faker.image.avatar()}")`;
+    const query = `INSERT INTO artists (userName, followers, followStatus, numTracks, dp, premium) VALUES("${faker.name.firstName()}","${randomBound(1, 6)}.${randomBound(12, 72)}M",${randomBoolean()},${randomBound(5, 100)},"${faker.image.avatar()}",${randomBoolean()})`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating artist data error', err);
@@ -51,7 +51,7 @@ const createSongData = () => {
 
 const createCommentData = () => {
   for (let i = 0; i < 1000; i += 1) {
-    const query = `INSERT INTO comments (comText, userId, songId, songTimeSpot, timeSincePost) VALUES("${randomComment()}",${randomBound(1, 1000)},${randomBound(1, 100)},${randomBound(1, 240)},${randomBound(1, 60)})`;
+    const query = `INSERT INTO comments (comText, comUserId, songId, songTimeSpot, timeSincePost) VALUES("${randomComment()}",${randomBound(1, 1000)},${randomBound(1, 100)},"${randomBound(1, 4)}:${randomBound(0, 60)}",${randomBound(1, 60)})`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating comment data error', err);

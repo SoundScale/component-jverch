@@ -24,7 +24,7 @@ const getAllSongData = (res, songid) => {
 
   return query(artistAndSongQuery, songInfo, artist)
     .then(info => query(commentsAndRepliesQuery, info, comments))
-    .then(info => res.send(info))
+    .then(info => res.status(200).send(JSON.stringify(info)))
     .catch(err => err);
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
 import ArtistProfile from './ArtistSidebar/ArtistProfile.jsx';
-import styledComponents from './ArtistSidebar/styledArtist';
-import { prototype } from 'events';
+import SongDescription from './songdescription/SongDescription.jsx';
+import styledOverlay from './OverlayStyle';
+
 
 const queryString = require('query-string');
 
@@ -63,11 +64,16 @@ class App extends React.Component {
 
   render() {
     const { artist } = this.state;
-    const { LeftBar } = styledComponents;
+    const { OverlayContainer, LeftBar, MiddleBar } = styledOverlay;
     return (
-      <LeftBar>
-        <ArtistProfile artist={artist} />
-      </LeftBar>
+      <OverlayContainer>
+        <LeftBar>
+          <ArtistProfile artist={artist} />
+        </LeftBar>
+        <MiddleBar>
+          <SongDescription desc={artist.description} />
+        </MiddleBar>
+      </OverlayContainer>
     );
   }
 }

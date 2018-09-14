@@ -16,9 +16,8 @@ class ArtistProfile extends React.Component {
     const { artist } = this.props;
     console.log(nextProps.artist);
     if (nextProps.artist !== artist) {
-      this.setState({ 
+      this.setState({
         artist: nextProps.artist,
-        followStatus: nextProps.artist.followStatus,
       });
     }
   }
@@ -36,35 +35,29 @@ class ArtistProfile extends React.Component {
 
   render() {
     const { artist } = this.state;
-    const { Avatar } = styledComponents;
-    const { ProfileDiv } = styledComponents;
-    const { ArtistContentDiv } = styledComponents;
-    const { ArtistNameStatus } = styledComponents;
-    const { ArtistName } = styledComponents;
-    const { FollowerTracksRow } = styledComponents;
-    const { FollowerIcon } = styledComponents;
-    const { FollowerCount } = styledComponents;
-    const { TracksIcon } = styledComponents;
-    const { TracksCount } = styledComponents;
+    const { StyAvatar, StyProfileDiv } = styledComponents;
+    const { StyArtistContentDiv, StyArtistNameStatus, StyArtistName } = styledComponents;
+    const { StyFollowerTracksRow, StyFollowerIcon, StyFollowerCount } = styledComponents;
+    const { StyTracksIcon, StyTracksCount } = styledComponents;
     return (
-      <ProfileDiv>
-        <Avatar src={artist.dp} alt="Avatar" id="dp" />
-        <ArtistContentDiv>
-          <ArtistNameStatus>
-            <ArtistName>{artist.userName}</ArtistName>
+      <StyProfileDiv>
+        <StyAvatar src={artist.dp} alt="Avatar" id="dp" />
+        <StyArtistContentDiv>
+          <StyArtistNameStatus>
+            <StyArtistName>{artist.userName}</StyArtistName>
             <PremiumPlan premium={artist.premium} />
-          </ArtistNameStatus>
-        </ArtistContentDiv>
-        <FollowerTracksRow>
-          <FollowerIcon />
-          <FollowerCount>{artist.followers}</FollowerCount>
-          <TracksIcon />
-          <TracksCount>{artist.numTracks}</TracksCount>
-        </FollowerTracksRow>
+          </StyArtistNameStatus>
+        </StyArtistContentDiv>
+        <StyFollowerTracksRow>
+          <StyFollowerIcon />
+          <StyFollowerCount>{artist.followers}</StyFollowerCount>
+          <StyTracksIcon />
+          <StyTracksCount>{artist.numTracks}</StyTracksCount>
+        </StyFollowerTracksRow>
         <div>
-          <FollowButton followStatus={artist.followStatus} changStatus={this.changeFollowStatus} />
+          <FollowButton followStatus={artist.followStatus} changeStatus={this.changeFollowStatus} />
         </div>
-      </ProfileDiv>
+      </StyProfileDiv>
     );
   }
 }

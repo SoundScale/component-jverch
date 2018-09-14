@@ -1,22 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styledComponents from './styledArtist';
 
 const FollowButton = (props) => {
-  const { followStatus } = props;
-  const { changeStatus } = props;
-  const { FolButton } = styledComponents;
+  const { followStatus, changeStatus } = props;
+  const { StyFolButton } = styledComponents;
   if (followStatus) {
     return (
-      <FolButton followStatus={followStatus} onClick={changeStatus}>
+      <StyFolButton followStatus={followStatus} onClick={changeStatus}>
         Following
-      </FolButton>
+      </StyFolButton>
     );
   }
   return (
-    <FolButton followStatus={followStatus} onClick={changeStatus}>
+    <StyFolButton followStatus={followStatus} onClick={changeStatus}>
       Follow
-    </FolButton>
+    </StyFolButton>
   );
+};
+
+FollowButton.propTypes = {
+  followStatus: PropTypes.bool,
+  changeStatus: PropTypes.func,
 };
 
 export default FollowButton;

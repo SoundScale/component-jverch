@@ -1,25 +1,18 @@
 import styled from 'styled-components';
 
-const LeftBar = styled.div`
-position: absolute;
-top: 0;
-left: 0;
-width: 120px;
-`;
-
-const ProfileDiv = styled.div`
+const StyProfileDiv = styled.div`
 position: relative;
 min-height: 30px;
 `;
 
-const Avatar = styled.img`
+const StyAvatar = styled.img`
 cursor: pointer;
 border-radius: 50%;
 width: 120px;
 height: 120px;
 `;
 
-const ArtistContentDiv = styled.div`
+const StyArtistContentDiv = styled.div`
 overflow: hidden;
 font: 12px/1.4 "Lucia Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
 color: #333;
@@ -30,7 +23,7 @@ top: 0;
 margin: 0 0 10px 0;
 `;
 
-const ArtistNameStatus = styled.h3`
+const StyArtistNameStatus = styled.h3`
 display: flex;
 font-weight: 400;
 font-size: 20px;
@@ -39,7 +32,7 @@ line-height: 1;
 vertical-align: middle;
 `;
 
-const ArtistName = styled.span`
+const StyArtistName = styled.span`
 margin-right: 3px;
 cursor: pointer;
 overflow: hidden;
@@ -48,7 +41,7 @@ text-overflow: ellipsis;
 word-break: normal;
 `;
 
-const PremiumPlanIcon = styled.span`
+const StyPremiumPlanIcon = styled.span`
 cursor: pointer;
 display: inline-block;
 vertical-align: top;
@@ -59,7 +52,7 @@ background-size: 12px 12px;
 background-image:${props => props.premium ? 'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UHJvIFN0YXI8L3RpdGxlPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZD0iTTYgMTJBNiA2IDAgMSAwIDYgMGE2IDYgMCAwIDAgMCAxMnoiIGZpbGw9IiNGNTAiLz48cGF0aCBmaWxsPSIjRkZGIiBkPSJNNiA4LjA3TDMuMzU1IDkuNjRsLjY3Ni0zLTIuMzEtMi4wMyAzLjA2Mi0uMjg1TDYgMS41bDEuMjE3IDIuODI1IDMuMDYzLjI4NC0yLjMxMSAyLjAzLjY3NiAzLjAwMnoiLz48L2c+PC9zdmc+);' : 'none;'}
 `;
 
-const FollowerTracksRow = styled.div`
+const StyFollowerTracksRow = styled.div`
 margin-bottom: 5px;
 display: flex;
 flex-wrap: wrap;
@@ -69,8 +62,9 @@ justify-content: flex-start;
 margin-bottom: 6px;
 `;
 
-const FollowerIcon = styled.span`
+const StyFollowerIcon = styled.span`
 cursor: pointer;
+margin-right: 5px;
 display: inline-block;
 vertical-align: bottom;
 width:16px;
@@ -79,7 +73,7 @@ background-size: 16px 16px;
 background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCI+PHBhdGggZmlsbD0icmdiYSgxNTMsIDE1MywgMTUzLCAwLjcpIiBkPSJNMTguNCAxOC41bDIuNSA1IC4yLjVIMjhsLTIuMS00LjMtNC4xLTEuNXYtMi41YzEuMi0xLjEgMS44LTMuMiAxLjgtNS4xIDAtMi4xLTItMy42LTMuNS0zLjZzLTMuNSAxLjYtMy41IDMuNmMwIDEuOS41IDQgMS44IDUuMXYyLjVoLS4xbC4xLjN6Ii8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTE3LjUgMTlsLTUtMS44di0zYzEuNC0xLjIgMi0zLjggMi01LjkgMC0yLjQtMi4zLTQuMy00LTQuMy0xLjcgMC00IDEuOC00IDQuMyAwIDIuMi42IDQuNyAyIDUuOXYzbC01IDEuOEwxIDI0aDE5bC0yLjUtNXoiLz48L3N2Zz4=);
 `;
 
-const FollowerCount = styled.span`
+const StyFollowerCount = styled.span`
 cursor: pointer;
 display:inline-block;
 width:16px;
@@ -95,7 +89,7 @@ margin: 0 10px 5px 0;
 }
 `;
 
-const TracksIcon = styled.span `
+const StyTracksIcon = styled.span `
 cursor: pointer;
 display: inline-block;
 vertical-align: bottom;
@@ -107,20 +101,20 @@ background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53
 padding: 0;
 `;
 
-const TracksCount = styled.span`
+const StyTracksCount = styled.span`
 cursor: pointer;
 display:inline-block;
 width:4px;
 height:16px;
 font-size: 14px;
 line-height: 20px;
-color: #999;
+color: #ccc;
 &:hover{
   color: #333;
 }
 `;
 
-const FolButton = styled.span`
+const StyFolButton = styled.span`
 cursor: pointer;
 min-width: 25px;
 background-color: ${props => props.followStatus ? "white" : "#f50"};
@@ -143,19 +137,18 @@ border-radius: 3px;
 `;
 
 export default {
-  LeftBar,
-  Avatar,
-  ProfileDiv,
-  ArtistContentDiv,
-  ArtistNameStatus,
-  ArtistName,
-  PremiumPlanIcon,
-  FollowerTracksRow,
-  FollowerIcon,
-  FollowerCount,
-  TracksIcon,
-  TracksCount,
-  FolButton,
+  StyAvatar,
+  StyProfileDiv,
+  StyArtistContentDiv,
+  StyArtistNameStatus,
+  StyArtistName,
+  StyPremiumPlanIcon,
+  StyFollowerTracksRow,
+  StyFollowerIcon,
+  StyFollowerCount,
+  StyTracksIcon,
+  StyTracksCount,
+  StyFolButton,
 };
 
 // padding: 2px 9px 2px 8px;

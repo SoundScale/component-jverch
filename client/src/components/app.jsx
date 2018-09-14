@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import ArtistProfile from './ArtistProfile.jsx';
-import styledComponents from './styledArtist';
+import ArtistProfile from './ArtistSidebar/ArtistProfile.jsx';
+import styledComponents from './ArtistSidebar/styledArtist';
 import { prototype } from 'events';
 
 const queryString = require('query-string');

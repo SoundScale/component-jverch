@@ -35,6 +35,13 @@ const comments = [
   'lol i saw him when he first up',
   'banggaaa fire',
   'on REPEAT my ears bless up',
+  'lOVE IT',
+  'breakups suck',
+  'DJ KHALED X LILTOMATO99 NEEEEW SONG GO LISTEN',
+  'hmu for trap beats and im willing to work with artist for free',
+  'sad emo music on my profile :(',
+  'please go like my friends new song hes very sad, somebody hurt him',
+  'SOUNDCLOUT <33333333',
 ];
 
 module.exports.comments = comments;

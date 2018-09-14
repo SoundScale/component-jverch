@@ -27,7 +27,7 @@ position: relative;
 height: 40px;
 width: 100%;
 top: 0;
-margin-bottom: 5px;
+margin: 0 0 10px 0;
 `;
 
 const ArtistNameStatus = styled.h3`
@@ -66,12 +66,13 @@ flex-wrap: wrap;
 margin: 0;
 padding: 0;
 justify-content: flex-start;
+margin-bottom: 6px;
 `;
 
 const FollowerIcon = styled.span`
+cursor: pointer;
 display: inline-block;
 vertical-align: bottom;
-margin: 0 10px 5px 0;
 width:16px;
 height:16px;
 background-size: 16px 16px;
@@ -79,6 +80,7 @@ background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53
 `;
 
 const FollowerCount = styled.span`
+cursor: pointer;
 display:inline-block;
 width:16px;
 height:16px;
@@ -88,6 +90,56 @@ font-size: 14px;
 line-height: 20px;
 color: #999;
 margin: 0 10px 5px 0;
+&:hover{
+  color: #333;
+}
+`;
+
+const TracksIcon = styled.span `
+cursor: pointer;
+display: inline-block;
+vertical-align: bottom;
+margin: 0 3px 0 20px;
+width:16px;
+height:16px;
+background-size: 16px 16px;
+background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTUgMTJoMnY0SDV6TTIxIDEyaDJ2NGgtMnpNMTcgMTBoMnY4aC0yek05IDhoMnYxMkg5ek0xMyA1aDJ2MThoLTJ6Ii8+PC9zdmc+);
+padding: 0;
+`;
+
+const TracksCount = styled.span`
+cursor: pointer;
+display:inline-block;
+width:4px;
+height:16px;
+font-size: 14px;
+line-height: 20px;
+color: #999;
+&:hover{
+  color: #333;
+}
+`;
+
+const FolButton = styled.span`
+cursor: pointer;
+min-width: 25px;
+background-color: ${props => props.followStatus ? "white" : "#f50"};
+color: ${props => props.followStatus ? "#f50" : "#fff"};
+border: ${props => props.followStatus ? "1px solid #f50" : "1px solid"};
+border-color: ${props => props.followStatus ? "none" : "#f50"};
+font-size: 12px;
+display: inline-block;
+position: relative;
+white-space: nowrap;
+font-weight: 100;
+text-align: center;
+vertical-align: baseLine;
+width: ${props => props.followStatus ? "60px" : "45px"};
+height: 20px;
+margin: 0 auto;
+padding: 0;
+line-height: 20px;
+border-radius: 3px;
 `;
 
 export default {
@@ -101,4 +153,11 @@ export default {
   FollowerTracksRow,
   FollowerIcon,
   FollowerCount,
+  TracksIcon,
+  TracksCount,
+  FolButton,
 };
+
+// padding: 2px 9px 2px 8px;
+// height: 22px;
+// line-height: 16px;

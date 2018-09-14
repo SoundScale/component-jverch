@@ -3,9 +3,9 @@ import styledComponents from './styledArtist';
 
 const PremiumPlan = (props) => {
   const { PremiumPlanIcon } = styledComponents;
-  // const { premium } = props;
-  console.log(props.premium);
-  if (props.premium) {
+  const { premium } = props;
+  // console.log(props.premium);
+  if (premium) {
     return (
       <PremiumPlanIcon premium />
     );

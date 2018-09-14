@@ -8,17 +8,30 @@ class ArtistProfile extends React.Component {
   constructor(props) {
     super(props);
     const { artist } = props;
-    this.state = {
-      artist,
-    };
+    this.state = {artist};
+    this.changeFollowStatus = this.changeFollowStatus.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     const { artist } = this.props;
     console.log(nextProps.artist);
     if (nextProps.artist !== artist) {
-      this.setState({ artist: nextProps.artist });
+      this.setState({ 
+        artist: nextProps.artist,
+        followStatus: nextProps.artist.followStatus,
+      });
     }
+  }
+
+  changeFollowStatus() {
+    this.setState((previousState) => {
+      return {
+        artist: {
+          ...previousState.artist,
+          followStatus: !previousState.artist.followStatus,
+        },
+      };
+    });
   }
 
   render() {
@@ -48,7 +61,9 @@ class ArtistProfile extends React.Component {
           <TracksIcon />
           <TracksCount>{artist.numTracks}</TracksCount>
         </FollowerTracksRow>
-        <FollowButton followStatus={artist.followStatus} />
+        <div>
+          <FollowButton followStatus={artist.followStatus} changStatus={this.changeFollowStatus} />
+        </div>
       </ProfileDiv>
     );
   }

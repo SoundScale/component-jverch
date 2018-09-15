@@ -1,18 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styledComponents from './styledArtist';
 
 const PremiumPlan = (props) => {
-  const { PremiumPlanIcon } = styledComponents;
+  const { StyPremiumPlanIcon } = styledComponents;
   const { premium } = props;
   // console.log(props.premium);
   if (premium) {
     return (
-      <PremiumPlanIcon premium />
+      <StyPremiumPlanIcon premium />
     );
   }
   return (
-    <PremiumPlanIcon />
+    <StyPremiumPlanIcon />
   );
+};
+
+PremiumPlan.propTypes = {
+  premium: PropTypes.number,
 };
 
 export default PremiumPlan;

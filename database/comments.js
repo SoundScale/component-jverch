@@ -42,6 +42,12 @@ const comments = [
   'sad emo music on my profile :(',
   'please go like my friends new song hes very sad, somebody hurt him',
   'SOUNDCLOUT <33333333',
+  'lemme hop on a feature',
+  'All you fools hes clipping the bass on purpose',
+  'bass dropped harder than my grades in middle school',
+  'listening on 200$ mastering headphones and bass still sounds trash',
+  'bro i bump to this',
+  'HEYYY YUHHHHHHHHHHHH YAAAAAAAAAAAAAAAAAAAAAAAAAAA',
 ];
 
 module.exports.comments = comments;

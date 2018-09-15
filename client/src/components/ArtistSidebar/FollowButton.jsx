@@ -20,7 +20,7 @@ const FollowButton = (props) => {
 };
 
 FollowButton.propTypes = {
-  followStatus: PropTypes.bool,
+  followStatus: PropTypes.number,
   changeStatus: PropTypes.func,
 };
 

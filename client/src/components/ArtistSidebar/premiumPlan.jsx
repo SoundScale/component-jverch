@@ -17,7 +17,7 @@ const PremiumPlan = (props) => {
 };
 
 PremiumPlan.propTypes = {
-  premium: PropTypes.bool
+  premium: PropTypes.number,
 };
 
 export default PremiumPlan;

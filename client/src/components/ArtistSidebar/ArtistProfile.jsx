@@ -8,7 +8,7 @@ class ArtistProfile extends React.Component {
   constructor(props) {
     super(props);
     const { artist } = props;
-    this.state = {artist};
+    this.state = { artist };
     this.changeFollowStatus = this.changeFollowStatus.bind(this);
   }
 

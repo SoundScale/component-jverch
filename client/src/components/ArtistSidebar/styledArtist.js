@@ -19,8 +19,8 @@ color: #333;
 position: relative;
 height: 40px;
 width: 100%;
-top: 0;
 margin: 0 0 10px 0;
+top: -10px;
 `;
 
 const StyArtistNameStatus = styled.h3`
@@ -30,6 +30,8 @@ font-size: 20px;
 font-family: "Interstate", "Lucia Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
 line-height: 1;
 vertical-align: middle;
+position: relative;
+
 `;
 
 const StyArtistName = styled.span`
@@ -60,6 +62,8 @@ margin: 0;
 padding: 0;
 justify-content: flex-start;
 margin-bottom: 6px;
+position: relative;
+top: -10px;
 `;
 
 const StyFollowerIcon = styled.span`
@@ -134,6 +138,7 @@ margin: 0 auto;
 padding: 0;
 line-height: 20px;
 border-radius: 3px;
+top: -10px;
 `;
 
 export default {

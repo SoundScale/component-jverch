@@ -38,7 +38,7 @@ const createUserData = () => {
 
 const createSongData = () => {
   for (let i = 0; i < 100; i += 1) {
-    const query = `INSERT INTO songs (title, artistId, description) VALUES("${faker.lorem.words()}",${randomBound(1, 100)},"${faker.lorem.paragraphs()}")`;
+    const query = `INSERT INTO songs (title, artistId, description) VALUES("${faker.lorem.words()}",${randomBound(1, 100)},"${faker.lorem.paragraphs().concat(faker.lorem.paragraphs())}")`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating song data error', err);

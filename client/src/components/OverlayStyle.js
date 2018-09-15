@@ -6,6 +6,7 @@ padding-right: 30px;
 border-right: 1px solid #999;
 position: relative;
 width: 840px;
+font: 12px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
 `;
 
 const LeftBar = styled.div`

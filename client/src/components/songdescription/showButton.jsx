@@ -5,10 +5,10 @@ import descripStyle from './descripStyle';
 const ShowButton = (props) => {
   const { disp, toggle } = props;
   const { StyShowButton } = descripStyle;
-  const buttonText = (disp) ? <p>Show less &#9652</p> : <span>Show more &#9660</span>;
+  const buttonText = (disp) ? `Show less ${String.fromCharCode(9652)}` : `Show more ${String.fromCharCode(9662)}`;
   return (
     <div>
-      <StyShowButton onClick={toggle}>
+      <StyShowButton onClick={toggle} disp={disp}>
         {buttonText}
       </StyShowButton>
     </div>

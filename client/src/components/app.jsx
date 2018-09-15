@@ -72,6 +72,7 @@ class App extends React.Component {
         </LeftBar>
         <MiddleBar>
           <SongDescription desc={artist.description} />
+          <SongComments 
         </MiddleBar>
       </OverlayContainer>
     );

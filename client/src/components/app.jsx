@@ -14,7 +14,6 @@ class App extends React.Component {
     this.state = {
       artist: {},
       comments: [],
-      replies: [],
     };
   }
 
@@ -51,13 +50,14 @@ class App extends React.Component {
             reply: comments[i].r,
             replyUser: comments[i].uu,
           }];
-        } else {
+          ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
+        } else if (results[results.length - 1]) {
           results[results.length - 1].replies.push({
             reply: comments[i].r,
             replyUser: comments[i].uu,
           });
+          ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
         }
-        ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
       }
 
       if (results[results.length - 1].c.comText !== comments[comments.length - 1].c.comText) {
@@ -77,17 +77,6 @@ class App extends React.Component {
     };
 
     const songComments = getComments(parsedData);
-
-    // const getReplies = (comments, dataObject) => {
-    //   const commentsObject = dataObject.comments;
-    //   let replies = $.extend({}, commentsObject);
-    //   ['c', 'u'].forEach(key => delete replies[key]);
-
-    //   replies.forEach((reply) => {
-    //     comments[]
-    //   });
-
-    // }
 
     console.log('single comments', songComments);
     this.setState(() => {

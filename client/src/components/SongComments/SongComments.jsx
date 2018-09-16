@@ -12,6 +12,16 @@ class SongComments extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   const { comment } = this.state;
+  //   console.log('comment', comment);
+  //   this.setState({
+  //     comment: comment.sort((a, b) => (
+  //       a.c.timeSincePost - b.c.timeSincePost
+  //     )),
+  //   });
+  // }
+
   componentWillReceiveProps(nextProps) {
     const { comments } = this.props;
     // console.log(nextProps.artist);
@@ -26,10 +36,12 @@ class SongComments extends React.Component {
     };
 
     // console.log((nextProps.comments.length));
-
+    
     if (nextProps.comments !== comments) {
       this.setState({
-        comments: nextProps.comments,
+        comments: nextProps.comments.sort((a, b) => (
+          a.c.timeSincePost - b.c.timeSincePost
+        )),
         numComments: findNumCom(nextProps.comments),
       });
     }

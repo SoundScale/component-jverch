@@ -10,6 +10,16 @@ class CommentBody extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   const { comment } = this.state;
+  //   console.log('comment', comment);
+  //   this.setState({
+  //     comment: comment.sort((a, b) => (
+  //       a.c.timeSincePost - b.c.timeSincePost
+  //     )),
+  //   });
+  // }
+
   render() {
     const { comment } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;

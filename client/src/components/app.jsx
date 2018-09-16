@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import ArtistProfile from './ArtistSidebar/ArtistProfile.jsx';
 import SongDescription from './songdescription/SongDescription.jsx';
+import SongComments from './SongComments/SongComments.jsx';
 import styledOverlay from './OverlayStyle';
 
 
@@ -37,33 +38,69 @@ class App extends React.Component {
   }
 
   importData(data) {
-    console.log("data", JSON.parse(data));
+    console.log('data', JSON.parse(data));
     const parsedData = JSON.parse(data);
 
     const getComments = (dataObject) => {
+      const { comments } = dataObject;
       const results = [];
-      for (let i = 0; i < dataObject.comments.length - 1; i += 1) {
-        if (dataObject.comments[i].comText !== dataObject.comments[i + 1].comText) {
-          results.push(dataObject.comments[i]);
+      for (let i = 0; i < comments.length - 1; i += 1) {
+        if (comments[i].c.comText !== comments[i + 1].c.comText) {
+          results.push(comments[i]);
+          results[results.length - 1].replies = [{
+            reply: comments[i].r,
+            replyUser: comments[i].uu,
+          }];
+        } else {
+          results[results.length - 1].replies.push({
+            reply: comments[i].r,
+            replyUser: comments[i].uu,
+          });
         }
+        ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
       }
-      results[results.length] = dataObject.comments[dataObject.comments.length - 1];
+
+      if (results[results.length - 1].c.comText !== comments[comments.length - 1].c.comText) {
+        results[results.length] = comments[comments.length - 1];
+        results[results.length - 1].replies = [{
+          reply: comments[comments.length - 1].r,
+          replyUser: comments[comments.length - 1].uu,
+        }];
+      } else {
+        results[results.length - 1].replies.push({
+          reply: comments[comments.length - 1].r,
+          replyUser: comments[comments.length - 1].uu,
+        });
+      }
+      ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
       return results;
     };
 
     const songComments = getComments(parsedData);
 
+    // const getReplies = (comments, dataObject) => {
+    //   const commentsObject = dataObject.comments;
+    //   let replies = $.extend({}, commentsObject);
+    //   ['c', 'u'].forEach(key => delete replies[key]);
+
+    //   replies.forEach((reply) => {
+    //     comments[]
+    //   });
+
+    // }
+
+    console.log('single comments', songComments);
     this.setState(() => {
       return {
         artist: parsedData.artist[0],
         comments: songComments,
-        replies: parsedData.comments,
       };
     });
   }
 
   render() {
     const { artist } = this.state;
+    const { comments } = this.state;
     const { OverlayContainer, LeftBar, MiddleBar } = styledOverlay;
     return (
       <OverlayContainer>
@@ -72,7 +109,7 @@ class App extends React.Component {
         </LeftBar>
         <MiddleBar>
           <SongDescription desc={artist.description} />
-          <SongComments 
+          <SongComments comments={comments} />
         </MiddleBar>
       </OverlayContainer>
     );

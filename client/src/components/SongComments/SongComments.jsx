@@ -45,7 +45,7 @@ class SongComments extends React.Component {
         <CommentHeader numComments={numComments} />
         <StyComBodyList>
           {comments.map(comment => (
-            <CommentBody comment={comment} />
+            <CommentBody comment={comment} isReply={false} />
           ))}
         </StyComBodyList>
       </StyCommentContainer>

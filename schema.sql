@@ -37,12 +37,12 @@ CREATE TABLE songs (
 CREATE TABLE comments (
     id INT NOT NULL AUTO_INCREMENT,
     comText VARCHAR(2083),
-    comUserId INT NOT NULL,
+    userId INT NOT NULL,
     songId INT NOT NULL,
     songTimeSpot VARCHAR(5),
     timeSincePost INT,     
     PRIMARY KEY (id),
-    FOREIGN KEY (comUserId)
+    FOREIGN KEY (userId)
         REFERENCES users (id),
     FOREIGN KEY (songId)
         REFERENCES songs (id)
@@ -50,7 +50,7 @@ CREATE TABLE comments (
 
 CREATE TABLE replies (
     id INT NOT NULL AUTO_INCREMENT,
-    replyText VARCHAR(2083),
+    comText VARCHAR(2083),
     timeSincePost INT,
     userId INT,
     commentId INT,

@@ -51,7 +51,7 @@ const createSongData = () => {
 
 const createCommentData = () => {
   for (let i = 0; i < 1000; i += 1) {
-    const query = `INSERT INTO comments (comText, comUserId, songId, songTimeSpot, timeSincePost) VALUES("${randomComment()}",${randomBound(1, 1000)},${randomBound(1, 100)},"${randomBound(1, 4)}:${randomBound(0, 60)}",${randomBound(1, 60)})`;
+    const query = `INSERT INTO comments (comText, userId, songId, songTimeSpot, timeSincePost) VALUES("${randomComment()}",${randomBound(1, 1000)},${randomBound(1, 100)},"${randomBound(1, 4)}:${randomBound(30, 60)}",${randomBound(1, 60)})`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating comment data error', err);
@@ -65,7 +65,7 @@ const createCommentData = () => {
 
 const createReplyData = () => {
   for (let i = 0; i < 1000; i += 1) {
-    const query = `INSERT INTO replies (replyText, timeSincePost, userId, commentId) VALUES("${randomComment()}",${randomBound(1, 60)},${randomBound(1, 100)},${randomBound(1, 1000)})`;
+    const query = `INSERT INTO replies (comText, timeSincePost, userId, commentId) VALUES("${randomComment()}",${randomBound(1, 30)},${randomBound(1, 100)},${randomBound(1, 1000)})`;
     connection.query(query, (err) => {
       if (err) {
         console.log('creating reply data error', err);

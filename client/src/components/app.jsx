@@ -28,7 +28,7 @@ class App extends React.Component {
       method: 'GET',
       url: `http://localhost:3001/songs/${songid}`,
       success: (data) => {
-        this.importData(data);
+        this.reformatData(data);
       },
       error: (error) => {
         console.log('error  ', error);
@@ -36,25 +36,28 @@ class App extends React.Component {
     });
   }
 
-  importData(data) {
+  reformatData(data) {
     console.log('data', JSON.parse(data));
     const parsedData = JSON.parse(data);
 
     const getComments = (dataObject) => {
       const { comments } = dataObject;
       const results = [];
+      comments.sort((a, b) => (
+        a.c.id - b.c.id
+      ));
       for (let i = 0; i < comments.length - 1; i += 1) {
         if (comments[i].c.comText !== comments[i + 1].c.comText) {
           results.push(comments[i]);
           results[results.length - 1].replies = [{
-            reply: comments[i].r,
-            replyUser: comments[i].uu,
+            c: comments[i].r,
+            u: comments[i].uu,
           }];
           ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
         } else if (results[results.length - 1]) {
           results[results.length - 1].replies.push({
-            reply: comments[i].r,
-            replyUser: comments[i].uu,
+            c: comments[i].r,
+            u: comments[i].uu,
           });
           ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
         }
@@ -63,13 +66,13 @@ class App extends React.Component {
       if (results[results.length - 1].c.comText !== comments[comments.length - 1].c.comText) {
         results[results.length] = comments[comments.length - 1];
         results[results.length - 1].replies = [{
-          reply: comments[comments.length - 1].r,
-          replyUser: comments[comments.length - 1].uu,
+          c: comments[comments.length - 1].r,
+          u: comments[comments.length - 1].uu,
         }];
       } else {
         results[results.length - 1].replies.push({
-          reply: comments[comments.length - 1].r,
-          replyUser: comments[comments.length - 1].uu,
+          c: comments[comments.length - 1].r,
+          u: comments[comments.length - 1].uu,
         });
       }
       ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);

@@ -58,6 +58,10 @@ const comments = [
   'EY BOS CAN I GETTA CHEESEBURGER',
   'Guys who dont like this song please dont bash the artist about it. Its disrespectful, and no ones opinion is objectively correct. You may not like this song, but there are others who do, and blatantly hating on this track offends not only joji but also the fans who like this track.',
   'nice song bro',
+  'oOOF',
+  'I cant feel my face.',
+  'to the left to the left',
+  'tastyy :3',
 ];
 
 module.exports.comments = comments;

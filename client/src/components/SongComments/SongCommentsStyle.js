@@ -42,7 +42,7 @@ const StyCom = styled.div`
 position: relative;
 padding: 10px 10px 10px 0;
 display: flex;
-margin-left: ${props => props.isReply ? '20px': '0'};
+margin-left: ${props => (props.isReply ? '20px' : '0')};
 `;
 
 const StyComDp = styled.span`
@@ -191,7 +191,7 @@ float: left;
 `;
 
 const StyRepIcon = styled.span`
-background-image: url(https://yt3.ggpht.com/a-/ACSszfEDQjvCTcyH-t4YZhUUBZeL8drtRBF4JxJ9YQ=s900-mo-c-c0xffffffff-rj-k-no);
+background-image: url(https://secure.meetupstatic.com/photos/member/c/e/b/e/highres_253972926.jpeg);
 width: 20px;
 height: 20px;
 background-size: cover;
@@ -223,7 +223,7 @@ cursor: pointer;
 padding: 2px 5px 2px 2px;
 color: #38d;
 text-decoration: none;
-width: 12%
+width: 10%
 display: inline;
 `;
 
@@ -232,12 +232,13 @@ cursor: pointer;
 border: none;
 box-sizing: border-box;
 height: 16px;
-width: 83%;
+width: 75%;
 padding: none;
 font-size: 12px;
 outline: none;
 display: inline;
 position: relative;
+color: ${props => (props.emptyReply ? '#999' : '#333')};
 `;
 
 export default {

@@ -9,9 +9,13 @@ class CommentBody extends React.Component {
       comment: props.comment,
       isReply: props.isReply,
       replyVis: false,
-      replyUser: 'Write a comment',
+      replyUser: '',
+      replyText: '',
+      emptyReply: true,
     };
     this.handleReply = this.handleReply.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   sortReplies() {
@@ -21,12 +25,46 @@ class CommentBody extends React.Component {
     ));
   }
 
+  handleEnter(e) {
+    if (e.key === 'Enter') {
+      const { replyText, comment } = this.state;
+      const newComment = {
+        c: {
+          comText: replyText,
+          timeSincePost: 0,
+          userId: 9999999999,
+        },
+        u: {
+          id: 9999999999,
+          dp: 'https://secure.meetupstatic.com/photos/member/c/e/b/e/highres_253972926.jpeg',
+          followStatus: 0,
+          home: 'San Francisco',
+          userName: 'Lil.Freddy-Z',
+        },
+      };
+      comment.replies.push(newComment);
+      this.setState({
+        comment,
+        replyText: '',
+        replyVis: false,
+      });
+    }
+  }
+
+  handleInputChange(e) {
+    if (e.target.value === '') {
+      this.setState({ replyText: '', emptyReply: true });
+    } else {
+      this.setState({ replyText: e.target.value, emptyReply: false });
+    }
+  }
+
   handleReply(comment) {
-    this.setState({replyVis: true, replyUser:comment.u.userName});
+    this.setState({ replyVis: true, replyUser: comment.u.userName });
   }
 
   render() {
-    const { comment, isReply, replyVis } = this.state;
+    const { comment, isReply, replyVis, replyUser, replyText, emptyReply } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
     const { StyComText, StyComP, StyAt } = styComments;
@@ -94,7 +132,7 @@ class CommentBody extends React.Component {
         { replyVis
           && (
             <StyComBodyList>
-              <StyCom isReply={true}>
+              <StyCom isReply>
                 <StyEditDiv>
                   <StyRepDiv>
                     <StyRepIconDiv>
@@ -103,8 +141,8 @@ class CommentBody extends React.Component {
                     <StyRepTextRow>
                       <StypTempAt>
                         @
-                        <StyTempRepA>{this.state.replyUser}</StyTempRepA>
-                        <StyRepInput></StyRepInput>
+                        <StyTempRepA>{replyUser}</StyTempRepA>
+                        <StyRepInput onChange={this.handleInputChange} value={replyText} placeholder="Write a reply" emptyReply={emptyReply} onKeyPress={this.handleEnter}/>
                       </StypTempAt>
                     </StyRepTextRow>
                   </StyRepDiv>

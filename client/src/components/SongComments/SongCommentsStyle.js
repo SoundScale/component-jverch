@@ -101,6 +101,18 @@ const StyComP = styled.p`
 margin: 0;
 `;
 
+const StyAt = styled.a`
+cursor: pointer;
+text-decoration: none;
+outline: 0;
+white-space: nowrap;
+color: #38d;
+margin-right: 3px;
+&:hover{
+  color: #333;
+}
+`;
+
 const StyPastReplyCol = styled.div`
 justify-content: space-between;
 align-items: flex-end;
@@ -150,7 +162,82 @@ background-repeat: no-repeat;
 background-position: center center;
 top: 0;
 bottom: 0;
-margin: auto 0;
+margin-top: 2px;
+`;
+
+const StyEditDiv = styled.div`
+opacity: 1;
+position: relative;
+z-index: 3;
+margin-top: 0;
+transition: opacity 300ms,height 300ms,margin 300ms;
+`;
+
+const StyRepDiv = styled.div`
+overflow: visible;
+padding: 5px;
+background: #f2f2f2;
+border: 1px solid #e5e5e5;
+height: 20px;
+min-width: 640px;
+`;
+
+const StyRepIconDiv = styled.div`
+width: 20px;
+height: 20px;
+margin-right: 0;
+position: relative;
+float: left;
+`;
+
+const StyRepIcon = styled.span`
+background-image: url(https://yt3.ggpht.com/a-/ACSszfEDQjvCTcyH-t4YZhUUBZeL8drtRBF4JxJ9YQ=s900-mo-c-c0xffffffff-rj-k-no);
+width: 20px;
+height: 20px;
+background-size: cover;
+background-position: 50% 50%;
+display: inline-block;
+`;
+
+const StyRepTextRow = styled.div`
+height: 20px;
+margin-left: 20px;
+position: relative;
+font-size: 12px;
+line-height: 16px;
+box-sizing: border-box;  
+background: #fff;
+}
+`;
+
+const StypTempAt = styled.span`
+position relative;
+top: 3px;
+left: 3px;
+`;
+
+const StyTempRepA = styled.a`
+font-size: 12px;
+line-height: 16px;
+cursor: pointer;
+padding: 2px 5px 2px 2px;
+color: #38d;
+text-decoration: none;
+width: 12%
+display: inline;
+`;
+
+const StyRepInput = styled.input`
+cursor: pointer;
+border: none;
+box-sizing: border-box;
+height: 16px;
+width: 83%;
+padding: none;
+font-size: 12px;
+outline: none;
+display: inline;
+position: relative;
 `;
 
 export default {
@@ -169,8 +256,17 @@ export default {
   StyComTime,
   StyComText,
   StyComP,
+  StyAt,
   StyPastReplyCol,
   StyPast,
   StyButDiv,
   StyRepBut,
+  StyEditDiv,
+  StyRepDiv,
+  StyRepIconDiv,
+  StyRepIcon,
+  StyRepTextRow,
+  StypTempAt,
+  StyTempRepA,
+  StyRepInput,
 };

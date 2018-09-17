@@ -8,25 +8,33 @@ class CommentBody extends React.Component {
     this.state = {
       comment: props.comment,
       isReply: props.isReply,
+      replyVis: false,
+      replyUser: 'Write a comment',
     };
+    this.handleReply = this.handleReply.bind(this);
   }
 
   sortReplies() {
     const { comment } = this.state;
     return comment.replies.sort((a, b) => (
-      a.c.timeSincePost - b.c.timeSincePost
+      b.c.timeSincePost - a.c.timeSincePost
     ));
   }
 
+  handleReply(comment) {
+    this.setState({replyVis: true, replyUser:comment.u.userName});
+  }
+
   render() {
-    const { comment, isReply } = this.state;
+    const { comment, isReply, replyVis } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
-    const { StyComText, StyComP } = styComments;
+    const { StyComText, StyComP, StyAt } = styComments;
     const { StyPastReplyCol, StyPast, StyButDiv, StyRepBut } = styComments;
-    const { StyComBodyList } = styComments;
+    const { StyComBodyList, StyEditDiv, StyRepDiv } = styComments;
+    const { StyRepTextRow, StyRepIconDiv, StyRepIcon } = styComments;
+    const { StypTempAt, StyTempRepA, StyRepInput } = styComments;
     const atText = !isReply ? 'at ' : '';
-    
     return (
       <li>
         <StyCom isReply={isReply}>
@@ -46,6 +54,14 @@ class CommentBody extends React.Component {
             <StyComText>
               <span>
                 <StyComP>
+                  {isReply
+                    && (
+                      <span>
+                        @
+                        <StyAt>{this.props.parent.u.userName}</StyAt>
+                      </span>
+                    )
+                  }
                   {comment.c.comText}
                 </StyComP>
               </span>
@@ -56,7 +72,13 @@ class CommentBody extends React.Component {
               {`${comment.c.timeSincePost} minutes ago`}
             </StyPast>
             <StyButDiv>
-              <StyRepBut />
+              {isReply
+                ? (
+                  <StyRepBut onClick={() => this.props.handleRep(comment)} />
+                ) : (
+                  <StyRepBut onClick={() => this.handleReply(comment)} />
+                )
+              }
             </StyButDiv>
           </StyPastReplyCol>
         </StyCom>
@@ -64,8 +86,30 @@ class CommentBody extends React.Component {
           && (
             <StyComBodyList>
               {this.sortReplies().map(reply => (
-                <CommentBody comment={reply} isReply />
+                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply}/>
               ))}
+            </StyComBodyList>
+          )
+        }
+        { replyVis
+          && (
+            <StyComBodyList>
+              <StyCom isReply={true}>
+                <StyEditDiv>
+                  <StyRepDiv>
+                    <StyRepIconDiv>
+                      <StyRepIcon />
+                    </StyRepIconDiv>
+                    <StyRepTextRow>
+                      <StypTempAt>
+                        @
+                        <StyTempRepA>{this.state.replyUser}</StyTempRepA>
+                        <StyRepInput></StyRepInput>
+                      </StypTempAt>
+                    </StyRepTextRow>
+                  </StyRepDiv>
+                </StyEditDiv>
+              </StyCom>
             </StyComBodyList>
           )
         }

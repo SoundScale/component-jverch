@@ -46,6 +46,16 @@ class App extends React.Component {
       comments.sort((a, b) => (
         a.c.id - b.c.id
       ));
+      if (comments.length === 1) {
+        results.push(comments[0]);
+        results[0].replies = [{
+          c: comments[0].r,
+          u: comments[0].uu,
+        }];
+        delete results[0].r;
+        delete results[0].uu;
+        return results;
+      }
       for (let i = 0; i < comments.length - 1; i += 1) {
         if (comments[i].c.comText !== comments[i + 1].c.comText) {
           results.push(comments[i]);
@@ -62,7 +72,6 @@ class App extends React.Component {
           ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
         }
       }
-
       if (results[results.length - 1].c.comText !== comments[comments.length - 1].c.comText) {
         results[results.length] = comments[comments.length - 1];
         results[results.length - 1].replies = [{

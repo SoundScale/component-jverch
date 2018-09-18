@@ -16,6 +16,7 @@ class CommentBody extends React.Component {
       replyText: '',
       emptyReply: true,
       isTooltipActive: false,
+      followingUser: false,
     };
     this.handleReply = this.handleReply.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,6 +24,11 @@ class CommentBody extends React.Component {
     this.findCommentID = this.findCommentID.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
+    this.changeFollowStatus = this.changeFollowStatus.bind(this);
+  }
+
+  changeFollowStatus() {
+    this.setState(prevState => ({ followingUser: !prevState.followingUser }));
   }
 
   findCommentID(id) {
@@ -90,7 +96,7 @@ class CommentBody extends React.Component {
   }
 
   render() {
-    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply, isTooltipActive } = this.state;
+    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply, isTooltipActive, followingUser } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
     const { StyComText, StyComP, StyAt } = styComments;
@@ -110,7 +116,7 @@ class CommentBody extends React.Component {
                 {commentUsername}
               </StyComUser>
               <Tooltip active={isTooltipActive} position="bottom" arrow="center" parent={`#${removeDotUser + commentId}`}>
-                <UserProfile user={comment.u} />
+                <UserProfile user={comment.u} followingUser={followingUser} changeFollowStatus={this.changeFollowStatus} />
               </Tooltip>
               <StyComTimeCont>
                 {atText}

@@ -232,7 +232,7 @@ cursor: pointer;
 border: none;
 box-sizing: border-box;
 height: 16px;
-width: 75%;
+max-width: 75%;
 padding: none;
 font-size: 12px;
 outline: none;

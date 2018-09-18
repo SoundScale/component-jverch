@@ -6,10 +6,10 @@ const WriteReplyBar = (props) => {
   const { StyComBodyList, StyEditDiv, StyRepDiv } = styComments;
   const { StyRepTextRow, StyRepIconDiv, StyRepIcon } = styComments;
   const { StypTempAt, StyTempRepA, StyRepInput } = styComments;
-  const { replyToComUser, onChange, value, emptyReply, onKeyPress } = props;
+  const { isReply, replyToComUser, onChange, value, emptyReply, onKeyPress } = props;
   return (
     <StyComBodyList>
-      <StyCom isReply>
+      <StyCom isReply={isReply}>
         <StyEditDiv>
           <StyRepDiv>
             <StyRepIconDiv>

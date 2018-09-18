@@ -3,7 +3,7 @@ import Tooltip from 'react-portal-tooltip';
 import styComments from './SongCommentsStyle';
 import WriteReplyBar from './WriteReplyBar.jsx';
 import ReplyButton from './ReplyButton.jsx';
-// import UserProfile from './UserProfile.jsx';
+import UserProfile from './UserProfile.jsx';
 
 class CommentBody extends React.Component {
   constructor(props) {

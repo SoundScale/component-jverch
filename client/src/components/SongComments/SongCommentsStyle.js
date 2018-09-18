@@ -241,6 +241,45 @@ position: relative;
 color: ${props => (props.emptyReply ? '#999' : '#333')};
 `;
 
+const StyUserBox = styled.div`
+box-sizing: border-box;
+overflow: hidden;
+margin-bottom: 10px;
+width: 100%;
+text-align: center;
+`;
+
+const StyUserDpA = styled.a`
+color: #38d;
+text-decoration: none;
+display: block;
+width: 80px;
+height: 80px;
+margin: 5px auto 15px;
+`;
+
+const StyUserDpDiv = styled.div`
+height: 80px;
+width: 80px;
+background: 0 0;
+border-radius: 50%;
+`;
+
+const StyUserDpSpan = styled.span`
+text-align: center;
+position: relative;
+background-repeat: no-repeat;
+background-image: url(${props => props.dp});
+width: 80px;
+height: 80px;
+opacity: 1;
+box-shadow: rgba(0,0,0,.1)0 0 0 1px inset;
+border-radius: 50%;
+background-size: cover;
+background-position: 50% 50%;
+`;
+
+
 export default {
   StyCommentContainer,
   StyComRow,
@@ -270,4 +309,8 @@ export default {
   StypTempAt,
   StyTempRepA,
   StyRepInput,
+  StyUserBox,
+  StyUserDpA,
+  StyUserDpDiv,
+  StyUserDpSpan,
 };

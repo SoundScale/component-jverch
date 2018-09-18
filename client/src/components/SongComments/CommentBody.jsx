@@ -1,7 +1,9 @@
 import React from 'react';
+import Tooltip from 'react-portal-tooltip';
 import styComments from './SongCommentsStyle';
 import WriteReplyBar from './WriteReplyBar.jsx';
-import ReplyButton from './ReplyButton.jsx'
+import ReplyButton from './ReplyButton.jsx';
+// import UserProfile from './UserProfile.jsx';
 
 class CommentBody extends React.Component {
   constructor(props) {
@@ -19,6 +21,8 @@ class CommentBody extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.findCommentID = this.findCommentID.bind(this);
+    this.hideTooltip = this.hideTooltip.bind(this);
+    this.showTooltip = this.showTooltip.bind(this);
   }
 
   findCommentID(id) {
@@ -41,6 +45,7 @@ class CommentBody extends React.Component {
       const { replyText, comment } = this.state;
       const newComment = {
         c: {
+          id: Math.floor(Math.random() * 999999) + 9999,
           comText: replyText,
           timeSincePost: 0,
           userId: 9999999999,
@@ -76,30 +81,37 @@ class CommentBody extends React.Component {
     this.setState({ replyVis: true, replyToCom: comment });
   }
 
-  showTooltip(){
-    
+  hideTooltip() {
+    this.setState({ isTooltipActive: false });
+  }
+
+  showTooltip() {
+    this.setState({ isTooltipActive: true });
   }
 
   render() {
-    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply } = this.state;
+    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply, isTooltipActive } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
     const { StyComText, StyComP, StyAt } = styComments;
     const { StyPastReplyCol, StyPast } = styComments;
     const { StyComBodyList } = styComments;
     const atText = !isReply ? 'at ' : '';
-    // if (comment.c.commentId) {
-    //   const replyToUser = this.props.findComID(comment.c.commentId).u.userName;
-    // }
+    const commentUsername = comment.u.userName;
+    const removeDotUser = commentUsername.replace('.', '');
+    const commentId = comment.c.id;
     return (
       <li>
         <StyCom isReply={isReply}>
           <StyComDp dp={comment.u.dp} />
           <StyComTextCont>
             <StyComUserTimeRow>
-              <StyComUser>
-                {comment.u.userName}
+              <StyComUser onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip} id={removeDotUser + commentId}>
+                {commentUsername}
               </StyComUser>
+              <Tooltip active={isTooltipActive} position="bottom" arrow="center" parent={`#${removeDotUser + commentId}`}>
+                <UserProfile user={comment.u} />
+              </Tooltip>
               <StyComTimeCont>
                 {atText}
                 <StyComTime>
@@ -139,7 +151,7 @@ class CommentBody extends React.Component {
           && (
             <StyComBodyList>
               {this.sortReplies().map(reply => (
-                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findComID={this.findCommentID} />
+                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findComID={this.findCommentID} key={reply.c.id} />
               ))}
             </StyComBodyList>
           )

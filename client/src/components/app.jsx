@@ -43,9 +43,6 @@ class App extends React.Component {
     const getComments = (dataObject) => {
       const { comments } = dataObject;
       const results = [];
-      comments.sort((a, b) => (
-        a.c.id - b.c.id
-      ));
 
       if (comments.length === 1) {
         results.push(comments[0]);
@@ -58,47 +55,46 @@ class App extends React.Component {
         return results;
       }
 
-      for (let i = 0; i < comments.length - 1; i += 1) {
-        if (comments[i].c.comText !== comments[i + 1].c.comText) {
-          results.push(comments[i]);
-          results[results.length - 1].replies = [{
-            c: comments[i].r,
-            u: comments[i].uu,
-          }];
-          ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
-        } else if (results[results.length - 1]) {
-          results[results.length - 1].replies.push({
-            c: comments[i].r,
-            u: comments[i].uu,
-          });
-          ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
+      for (let x = 0; x < comments.length - 1; x += 1) {
+        if (comments[x].c.comText !== comments[x + 1].c.comText) {
+          results.push(comments[x]);
         }
       }
-      if (results[results.length - 1].c.comText !== comments[comments.length - 1].c.comText) {
-        results[results.length] = comments[comments.length - 1];
-        results[results.length - 1].replies = [{
-          c: comments[comments.length - 1].r,
-          u: comments[comments.length - 1].uu,
-        }];
-      } else {
-        results[results.length - 1].replies.push({
-          c: comments[comments.length - 1].r,
-          u: comments[comments.length - 1].uu,
-        });
+
+      results.push(comments[comments.length - 1]);
+
+      for (let i = 0; i < results.length; i += 1) {
+        for (let j = 0; j < comments.length; j += 1) {
+          if (results[i].c.id === comments[j].c.id) {
+            if (results[i].replies) {
+              results[i].replies.push({
+                c: comments[j].r,
+                u: comments[j].uu,
+              });
+            } else {
+              results[i].replies = [{
+                c: comments[j].r,
+                u: comments[j].uu,
+              }];
+            }
+          }
+        }
+        ['r', 'uu'].forEach(key => delete results[i][key]);
       }
-      ['r', 'uu'].forEach(key => delete results[results.length - 1][key]);
+      console.log('"results insert replies"', results);
+
       return results;
     };
 
     const songComments = getComments(parsedData);
 
     console.log('single comments', songComments);
-    this.setState(() => {
-      return {
+    this.setState(() => (
+      {
         artist: parsedData.artist[0],
         comments: songComments,
-      };
-    });
+      }
+    ));
   }
 
   render() {

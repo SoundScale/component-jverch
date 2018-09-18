@@ -1,5 +1,6 @@
 import React from 'react';
 import styComments from './SongCommentsStyle';
+import WriteReplyBar from './WriteReplyBar.jsx';
 // import ReplyBody from './ReplyBody.jsx'
 
 class CommentBody extends React.Component {
@@ -9,13 +10,22 @@ class CommentBody extends React.Component {
       comment: props.comment,
       isReply: props.isReply,
       replyVis: false,
-      replyUser: '',
+      replyToCom: {},
       replyText: '',
       emptyReply: true,
     };
     this.handleReply = this.handleReply.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.findCommentID = this.findCommentID.bind(this);
+  }
+
+  findCommentID(id) {
+    const { comment } = this.state;
+    if (id === comment.c.id) {
+      return comment;
+    }
+    return comment.replies.find(reply => reply.c.id === id);
   }
 
   sortReplies() {
@@ -25,7 +35,7 @@ class CommentBody extends React.Component {
     ));
   }
 
-  handleEnter(e) {
+  handleEnter(e, replyingTo) {
     if (e.key === 'Enter') {
       const { replyText, comment } = this.state;
       const newComment = {
@@ -33,11 +43,13 @@ class CommentBody extends React.Component {
           comText: replyText,
           timeSincePost: 0,
           userId: 9999999999,
+          commentId: replyingTo.c.id,
         },
         u: {
           id: 9999999999,
           dp: 'https://secure.meetupstatic.com/photos/member/c/e/b/e/highres_253972926.jpeg',
           followStatus: 0,
+          followers: 999,
           home: 'San Francisco',
           userName: 'Lil.Freddy-Z',
         },
@@ -60,19 +72,20 @@ class CommentBody extends React.Component {
   }
 
   handleReply(comment) {
-    this.setState({ replyVis: true, replyUser: comment.u.userName });
+    this.setState({ replyVis: true, replyToCom: comment });
   }
 
   render() {
-    const { comment, isReply, replyVis, replyUser, replyText, emptyReply } = this.state;
+    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
     const { StyComText, StyComP, StyAt } = styComments;
     const { StyPastReplyCol, StyPast, StyButDiv, StyRepBut } = styComments;
-    const { StyComBodyList, StyEditDiv, StyRepDiv } = styComments;
-    const { StyRepTextRow, StyRepIconDiv, StyRepIcon } = styComments;
-    const { StypTempAt, StyTempRepA, StyRepInput } = styComments;
+    const { StyComBodyList } = styComments;
     const atText = !isReply ? 'at ' : '';
+    // if (comment.c.commentId) {
+    //   const replyToUser = this.props.findComID(comment.c.commentId).u.userName;
+    // }
     return (
       <li>
         <StyCom isReply={isReply}>
@@ -96,7 +109,7 @@ class CommentBody extends React.Component {
                     && (
                       <span>
                         @
-                        <StyAt>{this.props.parent.u.userName}</StyAt>
+                        <StyAt>{this.props.findComID(comment.c.commentId).u.userName}</StyAt>
                       </span>
                     )
                   }
@@ -122,33 +135,23 @@ class CommentBody extends React.Component {
         </StyCom>
         { !(isReply)
           && (
+            
             <StyComBodyList>
               {this.sortReplies().map(reply => (
-                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply}/>
+                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findComID={this.findCommentID} />
               ))}
             </StyComBodyList>
           )
         }
         { replyVis
           && (
-            <StyComBodyList>
-              <StyCom isReply>
-                <StyEditDiv>
-                  <StyRepDiv>
-                    <StyRepIconDiv>
-                      <StyRepIcon />
-                    </StyRepIconDiv>
-                    <StyRepTextRow>
-                      <StypTempAt>
-                        @
-                        <StyTempRepA>{replyUser}</StyTempRepA>
-                        <StyRepInput onChange={this.handleInputChange} value={replyText} placeholder="Write a reply" emptyReply={emptyReply} onKeyPress={this.handleEnter}/>
-                      </StypTempAt>
-                    </StyRepTextRow>
-                  </StyRepDiv>
-                </StyEditDiv>
-              </StyCom>
-            </StyComBodyList>
+            <WriteReplyBar
+              replyToComUser={replyToCom.u.userName}
+              onChange={this.handleInputChange}
+              value={replyText}
+              emptyReply={emptyReply}
+              onKeyPress={e => this.handleEnter(e, replyToCom)}
+            />
           )
         }
       </li>

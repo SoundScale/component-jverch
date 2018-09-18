@@ -14,7 +14,7 @@ class ArtistProfile extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { artist } = this.props;
-    console.log(nextProps.artist);
+    // console.log(nextProps.artist);
     if (nextProps.artist !== artist) {
       this.setState({
         artist: nextProps.artist,

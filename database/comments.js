@@ -48,6 +48,20 @@ const comments = [
   'listening on 200$ mastering headphones and bass still sounds trash',
   'bro i bump to this',
   'HEYYY YUHHHHHHHHHHHH YAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+  'Please stop making this kind of music.',
+  'b0ss... Ily. but I still like ur old music better... Whatever you do is out of my control, I just hope youre happy.',
+  ' S A D !',
+  'no one cares homie.',
+  'This song is FIRE. I am a young Rapper as well I do lyrical and RMB. I like to rap about real stuff I make most of my own beats or collab with my boy HMU.',
+  'this song sad but so happy',
+  'thanks for the art brotha',
+  'EY BOS CAN I GETTA CHEESEBURGER',
+  'Guys who dont like this song please dont bash the artist about it. Its disrespectful, and no ones opinion is objectively correct. You may not like this song, but there are others who do, and blatantly hating on this track offends not only joji but also the fans who like this track.',
+  'nice song bro',
+  'oOOF',
+  'I cant feel my face.',
+  'to the left to the left',
+  'tastyy :3',
 ];
 
 module.exports.comments = comments;

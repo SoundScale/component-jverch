@@ -1,21 +1,33 @@
 import React from 'react';
 import styComments from './SongCommentsStyle';
 
-const UserFollowBut = (props) => {
-  const { followStatus, changeStatus } = props;
-  const { StyUseFolButton } = styComments;
-  if (followStatus) {
+class UserFollowBut extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { clicked: false };
+    this.clicked = this.clicked.bind(this);
+  }
+
+  clicked() {
+    this.setState(prevState => ({ clicked: !prevState.clicked }));
+  }
+
+  render() {
+    const { StyUseFolButton } = styComments;
+    const { clicked } = this.state;
+    if (clicked) {
+      return (
+        <StyUseFolButton followStatus={clicked} onClick={this.clicked}>
+          Following
+        </StyUseFolButton>
+      );
+    }
     return (
-      <StyUseFolButton followStatus={followStatus} onClick={changeStatus}>
-        Following
+      <StyUseFolButton followStatus={clicked} onClick={this.clicked}>
+        Follow
       </StyUseFolButton>
     );
   }
-  return (
-    <StyUseFolButton followStatus={followStatus} onClick={changeStatus}>
-      Follow
-    </StyUseFolButton>
-  );
-};
+}
 
 export default UserFollowBut;

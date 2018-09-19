@@ -62,6 +62,7 @@ const comments = [
   'I cant feel my face.',
   'to the left to the left',
   'tastyy :3',
+  'dropped hot garbage on my page, peep it out im just tryna make it to meet Kanye',
 ];
 
 module.exports.comments = comments;

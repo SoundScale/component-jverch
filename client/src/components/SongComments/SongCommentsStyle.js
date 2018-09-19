@@ -247,38 +247,116 @@ overflow: hidden;
 margin-bottom: 10px;
 width: 100%;
 text-align: center;
+padding-left: 15px;
+padding-right: 15px;
 `;
 
 const StyUserDpA = styled.a`
 color: #38d;
 text-decoration: none;
 display: block;
-width: 80px;
-height: 80px;
-margin: 5px auto 15px;
+width: 70px;
+height: 70px;
+margin: 5px auto 0;
+
 `;
 
 const StyUserDpDiv = styled.div`
-height: 80px;
-width: 80px;
 background: 0 0;
 border-radius: 50%;
+width: 70px;
+height: 70px;
 `;
 
 const StyUserDpSpan = styled.span`
+width: 70px;
+height: 70px;
 text-align: center;
 position: relative;
 background-repeat: no-repeat;
 background-image: url(${props => props.dp});
-width: 80px;
-height: 80px;
 opacity: 1;
 box-shadow: rgba(0,0,0,.1)0 0 0 1px inset;
 border-radius: 50%;
 background-size: cover;
 background-position: 50% 50%;
+display: inline-block;
 `;
 
+const StyUsernameDiv = styled.div`
+font-size: 14px;
+font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+font-weight: 100;
+`;
+
+const StyUsernameA = styled.a`
+color: #333;
+text-decoration: none;
+cursor: pointer;
+`;
+
+const StyUserFolDiv = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+list-style: none;
+margin: 0;
+max-height: 12px;
+`;
+
+const StyUserFolA = styled.a`
+cursor: pointer;
+margin-right: 0;
+margin-top: 2px;
+margin-bottom: 2px;
+color: #999;
+font-size: 11px;
+line-height: 12px;
+text-decoration: none;
+display: inline-block;
+font-weight: 100;
+`;
+
+const StyUserFolIcon = styled.span`
+display: inline-block;
+width: 14px;
+height: 14px;
+position: relative;
+top: 3px;
+background-size: 14px 14px;
+background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCI+PHBhdGggZmlsbD0icmdiYSgxNTMsIDE1MywgMTUzLCAwLjcpIiBkPSJNMTguNCAxOC41bDIuNSA1IC4yLjVIMjhsLTIuMS00LjMtNC4xLTEuNXYtMi41YzEuMi0xLjEgMS44LTMuMiAxLjgtNS4xIDAtMi4xLTItMy42LTMuNS0zLjZzLTMuNSAxLjYtMy41IDMuNmMwIDEuOS41IDQgMS44IDUuMXYyLjVoLS4xbC4xLjN6Ii8+PHBhdGggZmlsbD0iIzk5OSIgZD0iTTE3LjUgMTlsLTUtMS44di0zYzEuNC0xLjIgMi0zLjggMi01LjkgMC0yLjQtMi4zLTQuMy00LTQuMy0xLjcgMC00IDEuOC00IDQuMyAwIDIuMi42IDQuNyAyIDUuOXYzbC01IDEuOEwxIDI0aDE5bC0yLjUtNXoiLz48L3N2Zz4=);
+`;
+
+const StyUserAddDiv = styled.div`
+font-size: 12px;
+font-weight: 100;
+color: #999;
+margin-top: 2px;
+`;
+
+const StyUseFolButton = styled.span`
+font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+cursor: pointer;
+min-width: 25px;
+background-color: "white";
+color: ${props => props.followStatus ? "#f50" : "#333"};
+border: ${props => props.followStatus ? "1px solid #f50" : "1px solid"};
+border-color: ${props => props.followStatus ? "#f50" : "#ccc"};
+font-size: 12px;
+display: inline-block;
+position: relative;
+white-space: nowrap;
+font-weight: 100;
+text-align: center;
+vertical-align: baseLine;
+width: ${props => props.followStatus ? "60px" : "48px"};
+height: 20px;
+margin-top: 5px;
+padding: 0;
+line-height: 20px;
+border-radius: 3px;
+top: -10px;
+`;
 
 export default {
   StyCommentContainer,
@@ -313,4 +391,11 @@ export default {
   StyUserDpA,
   StyUserDpDiv,
   StyUserDpSpan,
+  StyUsernameDiv,
+  StyUsernameA,
+  StyUserFolDiv,
+  StyUserFolA,
+  StyUserFolIcon,
+  StyUserAddDiv,
+  StyUseFolButton,
 };

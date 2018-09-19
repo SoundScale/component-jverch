@@ -20,12 +20,12 @@ class CommentBody extends React.Component {
     this.handleReply = this.handleReply.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
-    this.findCommentID = this.findCommentID.bind(this);
+    this.findParentComment = this.findParentComment.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
   }
 
-  findCommentID(id) {
+  findParentComment(id) {
     const { comment } = this.state;
     if (id === comment.c.id) {
       return comment;
@@ -126,7 +126,7 @@ class CommentBody extends React.Component {
                     && (
                       <span>
                         @
-                        <StyAt>{this.props.findComID(comment.c.commentId).u.userName}</StyAt>
+                        <StyAt>{this.props.findParentComment(comment.c.commentId).u.userName}</StyAt>
                       </span>
                     )
                   }
@@ -151,7 +151,7 @@ class CommentBody extends React.Component {
           && (
             <StyComBodyList>
               {this.sortReplies().map(reply => (
-                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findComID={this.findCommentID} key={reply.c.id} />
+                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findParentComment={this.findParentComment} key={reply.c.id} />
               ))}
             </StyComBodyList>
           )

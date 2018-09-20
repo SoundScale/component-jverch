@@ -3,7 +3,7 @@ import $ from 'jquery';
 import ArtistProfile from './ArtistSidebar/ArtistProfile.jsx';
 import SongDescription from './songdescription/SongDescription.jsx';
 import SongComments from './SongComments/SongComments.jsx';
-import styledOverlay from './OverlayStyle';
+import styledOverlay from './OverlayStyle.js';
 
 
 const queryString = require('query-string');
@@ -101,6 +101,7 @@ class App extends React.Component {
     const { artist } = this.state;
     const { comments } = this.state;
     const { OverlayContainer, LeftBar, MiddleBar } = styledOverlay;
+    const { FooterBar, FooterImg } = styledOverlay;
     return (
       <OverlayContainer>
         <LeftBar>
@@ -109,6 +110,9 @@ class App extends React.Component {
         <MiddleBar>
           <SongDescription desc={artist.description} />
           <SongComments comments={comments} />
+          <FooterBar>
+            <FooterImg></FooterImg>
+          </FooterBar>
         </MiddleBar>
       </OverlayContainer>
     );

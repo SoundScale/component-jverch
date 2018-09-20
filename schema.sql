@@ -1,7 +1,7 @@
-DROP DATABASE soundcloud;
-CREATE DATABASE soundcloud;
+DROP DATABASE comments;
+CREATE DATABASE comments;
 
-USE soundcloud;
+USE comments;
 
 CREATE TABLE artists (
     id INT NOT NULL AUTO_INCREMENT,

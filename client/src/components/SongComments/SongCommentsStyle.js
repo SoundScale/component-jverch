@@ -43,6 +43,7 @@ position: relative;
 padding: 10px 10px 10px 0;
 display: flex;
 margin-left: ${props => (props.isReply ? '20px' : '0')};
+
 `;
 
 const StyComDp = styled.span`
@@ -171,6 +172,7 @@ position: relative;
 z-index: 3;
 margin-top: 0;
 transition: opacity 300ms,height 300ms,margin 300ms;
+width: 80%;
 `;
 
 const StyRepDiv = styled.div`
@@ -179,7 +181,7 @@ padding: 5px;
 background: #f2f2f2;
 border: 1px solid #e5e5e5;
 height: 20px;
-min-width: 640px;
+width: 125%;
 `;
 
 const StyRepIconDiv = styled.div`
@@ -223,7 +225,7 @@ cursor: pointer;
 padding: 2px 5px 2px 2px;
 color: #38d;
 text-decoration: none;
-width: 10%
+width: 5%
 display: inline;
 `;
 
@@ -232,13 +234,14 @@ cursor: pointer;
 border: none;
 box-sizing: border-box;
 height: 16px;
-max-width: 75%;
+width: 500px;
 padding: none;
 font-size: 12px;
 outline: none;
 display: inline;
 position: relative;
 color: ${props => (props.emptyReply ? '#999' : '#333')};
+width: 71%;
 `;
 
 const StyUserBox = styled.div`

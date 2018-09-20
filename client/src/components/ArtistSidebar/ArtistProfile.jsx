@@ -39,6 +39,7 @@ class ArtistProfile extends React.Component {
     const { StyArtistContentDiv, StyArtistNameStatus, StyArtistName } = styledComponents;
     const { StyFollowerTracksRow, StyFollowerIcon, StyFollowerCount } = styledComponents;
     const { StyTracksIcon, StyTracksCount } = styledComponents;
+    const { StyReportDiv, StyReportBut } = styledComponents;
     return (
       <StyProfileDiv>
         <StyAvatar src={artist.dp} alt="Avatar" id="dp" />
@@ -57,6 +58,9 @@ class ArtistProfile extends React.Component {
         <div>
           <FollowButton followStatus={artist.followStatus} changeStatus={this.changeFollowStatus} />
         </div>
+        <StyReportDiv>
+          <StyReportBut>Report</StyReportBut>
+        </StyReportDiv>
       </StyProfileDiv>
     );
   }

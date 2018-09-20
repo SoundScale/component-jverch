@@ -141,6 +141,31 @@ border-radius: 3px;
 top: -10px;
 `;
 
+const StyReportDiv = styled.div`
+margin-top: 10px;
+`;
+
+const StyReportBut = styled.a`
+min-width: 25px;
+color: #666;
+border: 0;
+vertical-align: baseline;
+padding: 0 0 0 20px;
+text-shadow: none;
+text-align: left;
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAQAAACR313BAAAAnElEQVR4AZXNUQqDMBCE4TlWKApbiGBEpVYphQb6knvkaDnalLWK60uhfjA+5CfBX1+SBAvJiPKmCc7HizwZaQJ73MvEucx4FRtsPy+BA8c84pHtDetUcmXDwC53uGf7BBKcXFhTg7a0uJWFR4B0ChoMnLgGEhGBqEwQuAayQOmoLaihQS89vnQ2+w1ePHbwhgaVVDjoGE4cLLifPnBzeJR4+XAqAAAAAElFTkSuQmCC) no-repeat 0 0;
+border-radius: 3px;
+cursor: pointer;
+display: inline-block;
+position: relative;
+height: 22px;
+line-height: 16px;
+box-sizing: border-box;
+margin: 0;
+font-size: 11px;
+`;
+
+
 export default {
   StyAvatar,
   StyProfileDiv,
@@ -154,6 +179,8 @@ export default {
   StyTracksIcon,
   StyTracksCount,
   StyFolButton,
+  StyReportDiv,
+  StyReportBut,
 };
 
 // padding: 2px 9px 2px 8px;

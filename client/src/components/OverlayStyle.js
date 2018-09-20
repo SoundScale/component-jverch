@@ -20,11 +20,30 @@ max-width: 120px;
 const MiddleBar = styled.div`
 padding-left: 150px;
 max-width: 680px;
-min-width: 530;
+min-width: 460px;
+margin
+`;
+
+const FooterBar = styled.div`
+margin-top: 20px;
+border-top: 1px solid #f2f2f2;
+position: relative;
+`;
+
+const FooterImg = styled.div`
+display: block;
+max-width: 680px;
+height: 14px;
+position: relative;
+top: -8px;
+left: 0;
+background: url(https://a-v2.sndcdn.com/assets/images/stopper-9d4f27a.png) center center no-repeat;
 `;
 
 export default {
   OverlayContainer,
   LeftBar,
   MiddleBar,
+  FooterBar,
+  FooterImg,
 };

@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  database: 'soundcloud',
+  database: 'comments',
 });
 
 connection.connect((err) => {

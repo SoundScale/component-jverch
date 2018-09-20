@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const OverlayContainer = styled.div`
+margin-top: 25px;
 padding-top: 20px;
 padding-right: 30px;
 border-right: 1px solid #999;

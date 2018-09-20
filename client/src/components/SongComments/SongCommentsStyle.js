@@ -241,7 +241,7 @@ outline: none;
 display: inline;
 position: relative;
 color: ${props => (props.emptyReply ? '#999' : '#333')};
-width: 71%;
+width: 66%;
 `;
 
 const StyUserBox = styled.div`

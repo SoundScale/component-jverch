@@ -63,6 +63,11 @@ const comments = [
   'to the left to the left',
   'tastyy :3',
   'dropped hot garbage on my page, peep it out im just tryna make it to meet Kanye',
+  'BANDS ON BANDS ON BANDS ON my grandmother sings better than this',
+  'SLIMEY D:',
+  'i rap about deep feelings and im 14, plz check my songs out, much love',
+  'IF you have the time I would really appreciate it if you listened to my latest song called Jump . I drop a song every week, powered, mixed, mastered, produced, engineered and written by me! Thank you in advance!!',
+  'PLEASE DONT READ THIS. TOMORROW WILL BE THE BEST DAY OF YOUR LIFE. NOW YOuVE STARTED READING THIS. DONT STOP. THIS IS SO FREAKY. 1. say your name 10 times 2. say your moms name 5 times 3. say your crushes name 3 times 4. paste this to 4 other songs. if you do this, ur dream will come true on the nearest Friday. but if you read this and do not paste this, then you will have very bad luck. SEND THIS TO 5 SONGS IN 143 MINUTES. WHEN YOURE DONE PRESS F6 AND YOUR CRUSHS NAME WILL APPEAR IN BIG LETTERS ON THE SCREEN. THIS IS SO FREAKY BECAUSE IT ACTUALLY WORK Posted',
 ];
 
 module.exports.comments = comments;

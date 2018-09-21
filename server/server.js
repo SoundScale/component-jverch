@@ -9,7 +9,7 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, '/../client/dist/')));
 
-app.get('/songs/:songid', (req, res) => {
+app.get('/api/:songid', (req, res) => {
   console.log(__dirname);
   model(res, req.params.songid);
 });

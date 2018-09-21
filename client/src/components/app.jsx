@@ -6,7 +6,7 @@ import SongComments from './SongComments/SongComments.jsx';
 import styledOverlay from './OverlayStyle.js';
 
 
-const queryString = require('query-string');
+// const queryString = require('query-string');
 
 class App extends React.Component {
   constructor(props) {
@@ -18,27 +18,44 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const parsed = queryString.parse(location.search);
-    // console.log(parsed.id);
-    this.fetch(Number(parsed.id));
+    // const parsed = queryString.parse(location.search);
+    // // console.log(parsed.id);
+    // this.fetch(Number(parsed.id));
+    const url = window.location.href;
+    let endpoint = url.split('/');
+    endpoint = endpoint[endpoint.length - 2];
+    this.fetch(endpoint);
   }
 
   fetch(songid) {
+    // $.ajax({
+    //   method: 'GET',
+    //   url: `http://localhost:3001/api/${songid}`,
+    //   success: (data) => {
+    //     this.reformatData(data);
+    //   },
+    //   error: (error) => {
+    //     console.log('error  ', error);
+    //   },
+    // });
     $.ajax({
       method: 'GET',
-      url: `http://localhost:3001/songs/${songid}`,
+      url: `/comments/${songid}`,
       success: (data) => {
+        console.log((data));
         this.reformatData(data);
       },
       error: (error) => {
+        console.log('hello')
         console.log('error  ', error);
       },
     });
   }
 
   reformatData(data) {
-    console.log('data', JSON.parse(data));
-    const parsedData = JSON.parse(data);
+    // console.log('data', JSON.parse(data));
+    // const parsedData = JSON.parse(data);
+    const parsedData = data;
 
     const getComments = (dataObject) => {
       const { comments } = dataObject;
@@ -81,14 +98,14 @@ class App extends React.Component {
         }
         ['r', 'uu'].forEach(key => delete results[i][key]);
       }
-      console.log('"results insert replies"', results);
+      // console.log('"results insert replies"', results);
 
       return results;
     };
 
     const songComments = getComments(parsedData);
 
-    console.log('single comments', songComments);
+    // console.log('single comments', songComments);
     this.setState(() => (
       {
         artist: parsedData.artist[0],

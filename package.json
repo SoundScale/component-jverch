@@ -9,6 +9,7 @@
   },
   "scripts": {
     "seed": "node ./database/startup.js",
+    "seedrds": "mysql -h commentsdb.crly8spugqpt.us-east-2.rds.amazonaws.com -P 3306 -u spencerkwok -p < schema.sql ; node ./database/startup.js",
     "start": "nodemon ./server/server.js",
     "build": "webpack -d --watch"
   },

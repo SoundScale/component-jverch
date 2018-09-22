@@ -1,4 +1,4 @@
-DROP DATABASE comments;
+
 CREATE DATABASE comments;
 
 USE comments;

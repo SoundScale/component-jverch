@@ -42,11 +42,9 @@ class App extends React.Component {
       method: 'GET',
       url: `/comments/${songid}`,
       success: (data) => {
-        console.log((data));
         this.reformatData(data);
       },
       error: (error) => {
-        console.log('hello')
         console.log('error  ', error);
       },
     });

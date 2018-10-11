@@ -17,7 +17,7 @@ const UserProfile = (props) => {
       </StyUserDpA>
       <StyUsernameDiv>
         <StyUsernameA>
-          {user.userName}
+          {user.username}
         </StyUsernameA>
       </StyUsernameDiv>
       <StyUserFolDiv>
@@ -33,7 +33,7 @@ const UserProfile = (props) => {
         <UserFollowBut key={user.id} />
       </div>
     </StyUserBox>
-);
+  );
 };
 
 export default UserProfile;

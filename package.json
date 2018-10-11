@@ -8,10 +8,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "node ./database/startup.js",
-    "seedrds": "mysql -h commentsdb.crly8spugqpt.us-east-2.rds.amazonaws.com -P 3306 -u spencerkwok -p < schema.sql ; node ./database/startup.js",
-    "start": "nodemon ./server/server.js",
-    "build": "webpack -d --watch"
+    "start": "node ./server/server.js",
+    "start2": "node ./server/server2Queries.js",
+    "build": "webpack -d --watch",
+    "grunt": "grunt s3"
   },
   "dependencies": {
     "@babel/core": "^7.0.1",
@@ -23,12 +23,16 @@
     "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "mongoose": "^5.2.13",
+    "morgan": "^1.9.1",
     "mysql": "^2.16.0",
     "path": "^0.12.7",
+    "pg": "^7.5.0",
+    "pg-promise": "^8.4.6",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-portal-tooltip": "^2.4.0",
+    "request": "^2.88.0",
     "styled-components": "^3.4.6"
   },
   "devDependencies": {
@@ -36,12 +40,18 @@
     "babel-loader": "^8.0.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "casual": "^1.5.19",
+    "csv-stringify": "^4.0.1",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "fast-csv": "^2.4.1",
+    "grunt-s3": "^0.2.0-alpha.3",
+    "newrelic": "^4.9.0",
+    "nodemon": "^1.18.4",
     "webpack": "^4.18.0",
     "webpack-cli": "^3.1.0"
   },

@@ -30,7 +30,7 @@ class SongComments extends React.Component {
     if (nextProps.comments !== comments) {
       this.setState({
         comments: nextProps.comments.sort((a, b) => (
-          a.c.timeSincePost - b.c.timeSincePost
+          a.c.timesincepost - b.c.timesincepost
         )),
         numComments: findNumCom(nextProps.comments),
       });
@@ -44,9 +44,12 @@ class SongComments extends React.Component {
       <StyCommentContainer>
         <CommentHeader numComments={numComments} />
         <StyComBodyList>
-          {comments.map(comment => (
-            <CommentBody comment={comment} key={comment.c.id} />
-          ))}
+          {comments.map((comment) => {
+            const hasReply = comment.replies.length > 0;
+            return (
+              <CommentBody comment={comment} key={comment.c.id} hasReply={hasReply} />
+            );
+          })}
         </StyComBodyList>
       </StyCommentContainer>
     );

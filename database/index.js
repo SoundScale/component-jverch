@@ -1,18 +1,19 @@
-const mysql = require('mysql');
+const { Pool } = require('pg');
 
-const connection = mysql.createConnection({
-  host     : 'commentsdb.crly8spugqpt.us-east-2.rds.amazonaws.com',
-  user     : 'spencerkwok',
-  password : 'spencerkwok',
-  port     : '3306',
-  database : 'comments',
+// CONNECTING LOCALLY:
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'soundclout',
+//   password: 'Pass_word2%',
+// });
+
+// CONNECTING TO EC2
+const pool = new Pool({
+  user: 'postgres',
+  host: `${process.env.EC2_URL}`,
+  database: 'soundclout',
+  password: `${process.env.EC2_PGPASS}`,
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log(`error connecting: ${err.stack}`);
-    return;
-  } console.log('connected to database');
-});
-
-module.exports.connection = connection;
+module.exports = pool;

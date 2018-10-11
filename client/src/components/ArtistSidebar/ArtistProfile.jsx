@@ -27,7 +27,7 @@ class ArtistProfile extends React.Component {
       return {
         artist: {
           ...previousState.artist,
-          followStatus: !previousState.artist.followStatus,
+          followstatus: !previousState.artist.followstatus,
         },
       };
     });
@@ -45,7 +45,7 @@ class ArtistProfile extends React.Component {
         <StyAvatar src={artist.dp} alt="Avatar" id="dp" />
         <StyArtistContentDiv>
           <StyArtistNameStatus>
-            <StyArtistName>{artist.userName}</StyArtistName>
+            <StyArtistName>{artist.username}</StyArtistName>
             <PremiumPlan premium={artist.premium} />
           </StyArtistNameStatus>
         </StyArtistContentDiv>
@@ -53,10 +53,10 @@ class ArtistProfile extends React.Component {
           <StyFollowerIcon />
           <StyFollowerCount>{artist.followers}</StyFollowerCount>
           <StyTracksIcon />
-          <StyTracksCount>{artist.numTracks}</StyTracksCount>
+          <StyTracksCount>{artist.numtracks}</StyTracksCount>
         </StyFollowerTracksRow>
         <div>
-          <FollowButton followStatus={artist.followStatus} changeStatus={this.changeFollowStatus} />
+          <FollowButton followStatus={artist.followstatus} changeStatus={this.changeFollowStatus} />
         </div>
         <StyReportDiv>
           <StyReportBut>Report</StyReportBut>

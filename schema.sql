@@ -1,14 +1,14 @@
 
-CREATE DATABASE comments;
+CREATE DATABASE commentsBig;
 
-USE comments;
+USE commentsBig;
 
 CREATE TABLE artists (
     id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(100),
     followers VARCHAR(7),
     followStatus BOOLEAN,
-    numTracks INT,
+    numTracks TINYINT,
     dp VARCHAR(2083),
     premium BOOLEAN,
     PRIMARY KEY (id)

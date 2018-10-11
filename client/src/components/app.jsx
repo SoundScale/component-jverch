@@ -24,6 +24,7 @@ class App extends React.Component {
     const url = window.location.href;
     let endpoint = url.split('/');
     endpoint = endpoint[endpoint.length - 2];
+    console.log(endpoint);
     this.fetch(endpoint);
   }
 
@@ -40,8 +41,11 @@ class App extends React.Component {
     // });
     $.ajax({
       method: 'GET',
-      url: `/comments/${songid}`,
+      url: `/api/comments/${songid}`,
       success: (data) => {
+        console.log('DATA:');
+        console.log(data);
+        // console.log(JSON.parse(data));
         this.reformatData(data);
       },
       error: (error) => {
@@ -52,56 +56,51 @@ class App extends React.Component {
 
   reformatData(data) {
     // console.log('data', JSON.parse(data));
+    console.log('DATA WOW', data);
     // const parsedData = JSON.parse(data);
     const parsedData = data;
 
     const getComments = (dataObject) => {
       const { comments } = dataObject;
+      const commentsObj = {};
       const results = [];
 
-      if (comments.length === 1) {
-        results.push(comments[0]);
-        results[0].replies = [{
-          c: comments[0].r,
-          u: comments[0].uu,
-        }];
-        delete results[0].r;
-        delete results[0].uu;
-        return results;
-      }
-
-      for (let x = 0; x < comments.length - 1; x += 1) {
-        if (comments[x].c.comText !== comments[x + 1].c.comText) {
-          results.push(comments[x]);
+      for (let i = 0; i < comments.length; i += 1) {
+        const currId = comments[i].c.id;
+        if (!commentsObj[currId]) {
+          const newComment = {
+            c: comments[i].c,
+            u: comments[i].u,
+            replies: [],
+          };
+          commentsObj[currId] = newComment;
+        }
+        if (comments[i].r) {
+          const newResponse = {
+            c: comments[i].r,
+            u: comments[i].uu,
+          };
+          commentsObj[currId].replies.push(newResponse);
         }
       }
 
-      results.push(comments[comments.length - 1]);
-
-      for (let i = 0; i < results.length; i += 1) {
-        for (let j = 0; j < comments.length; j += 1) {
-          if (results[i].c.id === comments[j].c.id) {
-            if (results[i].replies) {
-              results[i].replies.push({
-                c: comments[j].r,
-                u: comments[j].uu,
-              });
-            } else {
-              results[i].replies = [{
-                c: comments[j].r,
-                u: comments[j].uu,
-              }];
-            }
-          }
-        }
-        ['r', 'uu'].forEach(key => delete results[i][key]);
-      }
-      // console.log('"results insert replies"', results);
-
+      Object.values(commentsObj).forEach(item => results.push(item));
+      
       return results;
     };
 
     const songComments = getComments(parsedData);
+    console.log('RESULT FROM GETCOMMENTS:', songComments);
+    // songComments[1].replies = [];
+
+    // c: {id: 216, comText: "SLIMEY D:", userId: 622, songId: 29, songTimeSpot: "4:50", …}
+    // u: {id: 622, userName: "Clint_Trantow", followers: 49, followStatus: 0, home: "Kansas", …}
+    // replies: (3) [{…}, {…}, {…}]
+
+    // Replies is an array containing these: (or empty)
+      // c: {id: 108, comText: "SLIMEY D:", timeSincePost: 21, userId: 57, commentId: 216}
+      // u: {id: 57, userName: "Emelia6", followers: 167, followStatus: 1, home: "Nevada", …}
+
 
     // console.log('single comments', songComments);
     this.setState(() => (

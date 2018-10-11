@@ -16,6 +16,7 @@ class CommentBody extends React.Component {
       replyText: '',
       emptyReply: true,
       isTooltipActive: false,
+      hasReply: props.hasReply,
     };
     this.handleReply = this.handleReply.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -36,7 +37,7 @@ class CommentBody extends React.Component {
   sortReplies() {
     const { comment } = this.state;
     return comment.replies.sort((a, b) => (
-      b.c.timeSincePost - a.c.timeSincePost
+      b.c.timesincepost - a.c.timesincepost
     ));
   }
 
@@ -46,18 +47,18 @@ class CommentBody extends React.Component {
       const newComment = {
         c: {
           id: Math.floor(Math.random() * 999999) + 9999,
-          comText: replyText,
-          timeSincePost: 0,
-          userId: 9999999999,
-          commentId: replyingTo.c.id,
+          comtext: replyText,
+          timesincepost: 0,
+          userid: 9999999999,
+          commentid: replyingTo.c.id,
         },
         u: {
           id: 9999999999,
           dp: 'https://secure.meetupstatic.com/photos/member/c/e/b/e/highres_253972926.jpeg',
-          followStatus: 0,
+          followstatus: 0,
           followers: 999,
           home: 'San Francisco',
-          userName: 'Lil.Freddy-Z',
+          username: 'Lil.Freddy-Z',
         },
       };
       comment.replies.push(newComment);
@@ -90,32 +91,32 @@ class CommentBody extends React.Component {
   }
 
   render() {
-    const { comment, isReply, replyVis, replyToCom, replyText, emptyReply, isTooltipActive } = this.state;
+    const { comment, hasReply, isReply, replyVis, replyToCom, replyText, emptyReply, isTooltipActive } = this.state;
     const { StyCom, StyComDp, StyComTextCont } = styComments;
     const { StyComUserTimeRow, StyComUser, StyComTimeCont, StyComTime } = styComments;
     const { StyComText, StyComP, StyAt } = styComments;
     const { StyPastReplyCol, StyPast } = styComments;
     const { StyComBodyList } = styComments;
     const atText = !isReply ? 'at ' : '';
-    const commentUsername = comment.u.userName;
+    const commentUsername = comment.u.username;
     const removeDotUser = commentUsername.replace('.', '');
-    const commentId = comment.c.id;
+    const commentid = comment.c.id;
     return (
       <li>
         <StyCom isReply={isReply}>
           <StyComDp dp={comment.u.dp} />
           <StyComTextCont>
             <StyComUserTimeRow>
-              <StyComUser onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip} id={removeDotUser + commentId}>
+              <StyComUser onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip} id={removeDotUser + commentid}>
                 {commentUsername}
               </StyComUser>
-              <Tooltip active={isTooltipActive} position="bottom" arrow="center" parent={`#${removeDotUser + commentId}`}>
+              <Tooltip active={isTooltipActive} position="bottom" arrow="center" parent={`#${removeDotUser + commentid}`}>
                 <UserProfile user={comment.u} />
               </Tooltip>
               <StyComTimeCont>
                 {atText}
                 <StyComTime>
-                  {comment.c.songTimeSpot}
+                  {comment.c.songtimespot}
                 </StyComTime>
               </StyComTimeCont>
             </StyComUserTimeRow>
@@ -126,18 +127,18 @@ class CommentBody extends React.Component {
                     && (
                       <span>
                         @
-                        <StyAt>{this.props.findParentComment(comment.c.commentId).u.userName}</StyAt>
+                        <StyAt>{this.props.findParentComment(comment.c.commentid).u.username}</StyAt>
                       </span>
                     )
                   }
-                  {comment.c.comText}
+                  {comment.c.comtext}
                 </StyComP>
               </span>
             </StyComText>
           </StyComTextCont>
           <StyPastReplyCol>
             <StyPast>
-              {`${comment.c.timeSincePost} minutes ago`}
+              {`${comment.c.timesincepost} minutes ago`}
             </StyPast>
             <ReplyButton
               isReply={isReply}
@@ -147,11 +148,11 @@ class CommentBody extends React.Component {
             />
           </StyPastReplyCol>
         </StyCom>
-        { !(isReply)
+        {(hasReply)
           && (
             <StyComBodyList>
               {this.sortReplies().map(reply => (
-                <CommentBody comment={reply} isReply parent={comment} handleRep={this.handleReply} findParentComment={this.findParentComment} key={reply.c.id} />
+                <CommentBody hasReply={false} comment={reply} isReply parent={comment} handleRep={this.handleReply} findParentComment={this.findParentComment} key={reply.c.id} />
               ))}
             </StyComBodyList>
           )
@@ -160,7 +161,7 @@ class CommentBody extends React.Component {
           && (
             <WriteReplyBar
               isReply
-              replyToComUser={replyToCom.u.userName}
+              replyToComUser={replyToCom.u.username}
               onChange={this.handleInputChange}
               value={replyText}
               emptyReply={emptyReply}

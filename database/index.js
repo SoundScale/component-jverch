@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Pool, Client } = require('pg');
 
 // CONNECTING LOCALLY:
 // const pool = new Pool({
@@ -15,5 +15,13 @@ const pool = new Pool({
   database: 'soundclout',
   password: `${process.env.EC2_PGPASS}`,
 });
+
+// CONNECTING TO EC2
+// const client = new Client({
+//   user: 'postgres',
+//   host: `${process.env.EC2_URL}`,
+//   database: 'soundclout',
+//   password: `${process.env.EC2_PGPASS}`,
+// });
 
 module.exports = pool;

@@ -1,4 +1,4 @@
-const nr = require('newrelic');
+// const nr = require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -34,13 +34,25 @@ SELECT
 
 const getAllData = (res, songid) => {
   // IF DOING 1 QUERY
-  dbPool.query(bothQueries, [songid])
-    .then((result) => {
-      res.status(200).send(result.rows[0]);
-    })
-    .catch((err) => {
+  dbPool.connect((err, client, release) => {
+    if (err) {
       res.status(500).send(err);
+    }
+    client.query(bothQueries, [songid], (err, result) => {
+      release();
+      if (err) {
+        res.status(500).send(err);
+      }
+      res.status(200).send(result.rows[0]);
     });
+  });
+  // dbPool.query(bothQueries, [songid])
+  //   .then((result) => {
+  //     res.status(200).send(result.rows[0]);
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send(err);
+  //   });
 };
 
 
@@ -48,6 +60,10 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 app.use('/songs/:songid', express.static(path.join(__dirname, '/../client/dist/')));
+
+app.get('/loaderio-*', (req, res) => {
+  res.send(`${process.env.LOADER}`);
+});
 
 app.get('/api/comments/:songid', (req, res) => {
   getAllData(res, req.params.songid);

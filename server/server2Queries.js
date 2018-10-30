@@ -1,7 +1,8 @@
-const nr = require('newrelic');
+// const nr = require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const dbPool = require('../database/index.js');
 
@@ -24,28 +25,51 @@ const getAllData = (res, songid) => {
   // IF DOING TWO QUERIES:
 
   const songInfo = {};
-  dbPool.query(artistAndSongQuery, [songid])
-    .then((artistResult) => {
-      songInfo.artist = artistResult.rows;
-      return dbPool.query(commentsAndRepliesQuery, [songid])
-        .then((commentResult) => {
-          songInfo.comments = commentResult.rows;
-          res.status(200).send(songInfo);
-        });
-    })
-    .catch((err) => {
+  dbPool.connect((err, client, release) => {
+    if (err) {
       res.status(500).send(err);
-    });
+    }
+    client.query(artistAndSongQuery, [songid])
+      .then((artistResult) => {
+        songInfo.artist = artistResult.rows;
+        return client.query(commentsAndRepliesQuery, [songid])
+          .then((commentResult) => {
+            release();
+            songInfo.comments = commentResult.rows;
+            res.status(200).send(songInfo);
+          });
+      })
+      .catch((queryErr) => {
+        release();
+        res.status(500).send(queryErr);
+      });
+  });
+  // dbPool.query(artistAndSongQuery, [songid])
+  //   .then((artistResult) => {
+  //     songInfo.artist = artistResult.rows;
+  //     return dbPool.query(commentsAndRepliesQuery, [songid])
+  //       .then((commentResult) => {
+  //         songInfo.comments = commentResult.rows;
+  //         res.status(200).send(songInfo);
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send(err);
+  //   });
 };
 
 
 const app = express();
 app.use(cors());
-
+app.use(morgan('dev'));
 app.use('/songs/:songid', express.static(path.join(__dirname, '/../client/dist/')));
 
 app.get('/api/comments/:songid', (req, res) => {
   getAllData(res, req.params.songid);
 });
+
+// app.get('/healthy', (req, res) => {
+//   res.status(200).send();
+// });
 
 app.listen(3001, () => console.log('Listening on port 3001'));
